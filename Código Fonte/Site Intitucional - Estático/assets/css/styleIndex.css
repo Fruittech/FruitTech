@@ -42,6 +42,9 @@
   font-family: 'Sora', sans-serif;
   padding: 0 3rem;
   font-weight: 400;
+  z-index: 99;
+  position: fixed;
+  background-color: white;
 }
 
 .linksNavbar {
