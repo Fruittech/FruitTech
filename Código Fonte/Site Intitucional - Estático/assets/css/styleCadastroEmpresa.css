@@ -213,12 +213,12 @@ body{
 .main__cardError{
     display: none;
     z-index: 2; 
-    position: absolute; 
-    left: 50%;
     width: 400px;
     height: 180px;
     background-color: #ffffff;
     border-radius: 10px;
+    position: absolute; 
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 
