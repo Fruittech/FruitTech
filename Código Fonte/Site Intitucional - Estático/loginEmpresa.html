@@ -11,8 +11,19 @@
 
 <body>
 
-    
+
     <div class="main">
+        <div class="main__cardError" id="cardError">
+
+            <div class="main__content">
+                <span class="main__mensageError" id="mensageError"></span>
+            </div>
+            <hr style="opacity: 0.40;">
+            <div class="main__footerCardError">
+                <button class="main__tryAgain" type='button' onclick='FechaErro()'>Tentar Novamente</button>
+            </div>
+        </div>
+        <div class="main__errorBg" id="errorBg" onclick="FechaErro()"></div>
         <section class="main__rightSection">
 
         </section>
@@ -29,7 +40,8 @@
                     </div>
                     <div class="main__inputDates">
                         <div class="flex--bases">
-                            <input type="text" id="input_CNPJ" class="input--bases" placeholder="CNPJ...">
+                            <input type="text" id="input_CNPJ" class="input--bases" placeholder="CNPJ..."
+                                oninput="FormataCNPJ()" maxlength="14">
                         </div>
                         <div class="flex--bases">
                             <input type="text" id="input_senha" class="input--bases" placeholder="Senha...">
@@ -39,17 +51,54 @@
                 </article>
                 <!-- <article class="main__articleMiddle"> -->
                 <article class="main__articleLower">
-                    Não tem uma conta? <b><a href="#">Cadastrar conta</a></b>
+                    Não tem uma conta? <b><a href="cadastroEmpresa.html">Cadastrar conta</a></b>
                 </article>
             </div>
         </section>
-    </main>
+        </main>
 
 
 </body>
+
 </html>
 
 <script>
+    function FormataCNPJ() {
+        var inputCNPJ = document.getElementById('input_CNPJ');
+        var CNPJ = inputCNPJ.value;
+        inputCNPJ.value = CNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+    }
+
+    function Login() {
+
+        var cnpj = (input_CNPJ.value);
+        cnpj = cnpj.replace(/[^0-9]/g, ''); // Substitui todos os caracteres não numéricos por um espaço vazio
+        var senha = input_senha.value;
+
+        if (cnpj == '12345678912345' && senha == '123') {
+
+            window.location = 'dashboard.html'
+
+        } else {
+
+            AbreErro(`Email ou Senha incorretos`)
+
+        }
+
+
+    }
+
+    function AbreErro(mensagem) {
+        errorBg.style = 'display: block'
+        cardError.style = 'display: block'
+        mensageError.innerText = `${mensagem}`
+
+    }
+
+    function FechaErro() {
+        errorBg.style = 'display: none'
+        cardError.style = 'display: none'
+    }
 
 </script>
 

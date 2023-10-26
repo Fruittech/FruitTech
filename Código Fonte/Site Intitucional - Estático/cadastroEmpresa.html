@@ -42,13 +42,13 @@
                         </div>
                         <div class="flex--bases">
                             <input type="text" id="input_CNPJ" class="input--bases" placeholder="CNPJ..."
-                                onblur="FormataCNPJ()" maxlength="14">
+                                oninput="FormataCNPJ()" maxlength="14">
                             <input type="date" id="input_dtCriacao" class="input--bases"
                                 placeholder="Data de Criação...">
                         </div>
                         <div class="flex--bases">
                             <input type="text" id="input_cep" class="input--bases" placeholder="CEP..."
-                                onblur="PuxaCEP(),FormataCEP()" maxlength="8">
+                                oninput="PuxaCEP()" maxlength="8">
                             <input type="text" id="input_complemento" class="input--bases" placeholder="Complemento...">
                         </div>
                         <div class="flex--bases">
@@ -93,11 +93,11 @@
         inputCNPJ.value = CNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
     }
 
-    function FormataCEP() {
-        var inputCEP = document.getElementById('input_cep')
-        var CEP = inputCEP.value
-        inputCEP.value = CEP.replace(/^(\d{5})(\d{3})/, "$1-$2")
-    }
+    // function FormataCEP() {
+    //     var inputCEP = document.getElementById('input_cep')
+    //     var CEP = inputCEP.value
+    //     inputCEP.value = CEP.replace(/^(\d{5})(\d{3})/, "$1-$2")
+    // }
 
 
     function Cadastrar() {
@@ -120,8 +120,8 @@
         var senha = (input_senha.value);
         var confirmar_senha = (input_confirmaSenha.value);
 
-        if (nome_empresa == '' || cnpj == '' || data == '' || logradouro == '' || logradouro == 'Nenhum logradouro no CEP fornecido...' || bairro == '' || bairro == 'Nenhum bairro no CEP fornecido...' || numero == 0 ||
-            cidade == '' || cidade == 'Nenhuma cidade no CEP fornecido...' || estado == '' || estado == 'Nenhum estado no CEP fornecido...' || cep == '' || Telefone_fixo == '' || email == '' || /[@]/.test(email) == false || senha == '') {
+        if (nome_empresa == '' || cnpj == '' || data == '' || logradouro == '' || bairro == '' || numero == 0 ||
+            cidade == '' || estado == '' || cep == '' || Telefone_fixo == '' || cepIndefinido == true || email == '' || /[@]/.test(email) == false || senha == '') {
 
             AbreErro('Campos vazios ou incorretos! Preencha-os corretamente.')
 
@@ -137,6 +137,8 @@
 
 
     }
+
+    var cepIndefinido = false
 
     function PuxaCEP() {
 
@@ -156,6 +158,7 @@
                 // Campos puxados da JSON com os dados do respectivo CEP
 
                 if (data.cep === undefined) {
+                    cepIndefinido = true
                     document.getElementById('input_logradouro').value = "Nenhum logradouro no CEP fornecido...";
                     document.getElementById('input_bairro').value = "Nenhum bairro no CEP fornecido...";
                     document.getElementById('input_cidade').value = "Nenhuma cidade no CEP fornecido...";

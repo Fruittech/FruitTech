@@ -30,6 +30,12 @@
   src: url(../fonte/Sora-VariableFont_wght.ttf) format('opentype');
 }
 
+html{
+  scroll-behavior: smooth;
+  
+}
+
+
 .header {
   background-color: #FFFFFF;
 }

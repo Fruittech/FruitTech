@@ -17,7 +17,9 @@ body{
 
 :root {
     --cor-destaque: #0E6616;
-    --tamanho-base-fonte: 12.5px
+    --tamanho-base-fonte: 12.5px;
+    --bg-cor-input: #E0EBE1;
+
 } 
   
 
