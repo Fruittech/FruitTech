@@ -4,15 +4,15 @@ create database FruitTechV1;
 
 use FruitTechV1;
 
--- ENTIDADES
+-- TABELAS
 create table Transportadora (
 idTransportadora int primary key auto_increment,
-nomeTransp varchar(45),
+nomeTransportadora varchar(45),
 cnpj char(14),
 RNTRC varchar(14),
 categoriaRNTRC char(3),
-emailTransp varchar(60),
-senhaTransp varchar(30)
+emailTransportadora varchar(60),
+senhaTransportadora varchar(30)
 );
 
 create table Usuario (
@@ -63,7 +63,7 @@ idProduto int primary key auto_increment,
 nomeProduto varchar(40),
 tipoProduto varchar(30),
 tempIdeal decimal (5,2),
-umidIdeal decimal(5,2),
+umidIdeal int,
 fkCaminhaoProd int, 
 constraint fkCaminhaoProd foreign key (fkCaminhaoProd) references Caminhao(idCaminhao)
 );
@@ -80,13 +80,13 @@ create table SensorDados (
 idSensorDados int auto_increment,
 fkSensor int,
 primary key (idSensorDados, fkSensor),
-umidade double,
+umidade int,
 temperatura double,
 data_hora timestamp,
 constraint fkSensor foreign key (fkSensor) references Sensor(idSensor)
 );
 
--- DESCRIBES
+-- DESCRIÇÃO
 describe Transportadora;
 describe Usuario;
 describe Endereco;

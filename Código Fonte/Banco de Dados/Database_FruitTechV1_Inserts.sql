@@ -4,7 +4,7 @@ create database FruitTechV1;
 
 use FruitTechV1;
 
--- DESCRIBES
+-- DESCRIÇÃO
 describe Transportadora;
 describe Usuario;
 describe Endereco;
@@ -14,19 +14,19 @@ describe Produto;
 describe Sensor;
 describe SensorDados;
 
--- ATRIBUTOS
+-- INSERÇÃO DE DADOS
 insert into Transportadora values
 (null, 'MamãoTransp', 78711574000165, 35622079, 'TAC', 'mamaotransp@gmail.com', 'formosapapaya'),
 (null, 'FruitServices', 89653455528924, 95322475, 'ETC', 'fruitservices@gmail.com', 'frutasfrescas52'),
 (null, 'TranspTrip', 65542376689045, 67789290, 'CTC', 'transptrip@gmail.com', 'tranptrippassword');
 
 insert into Usuario values
-(null, 1, 'Roberto', 'Manci', 78500623445, 'usuario573'),
-(null, 1, 'Livia', 'Santana', 00991173040, 'usuario521'),
-(null, 2, 'Felipe', 'Norberto', 50206345062, 'usuario592'),
-(null, 2, 'Renato', 'Santoru', 67602959000, 'usuario548'),
-(null, 3, 'Silvia', 'Viena', 48887684049, 'usuario567'),
-(null, 3, 'Marcos', 'Pagliani', 14732116035, 'usuario540');
+(null, 1, 'Roberto', 'Manci', '78500623445', 'usuario573'),
+(null, 1, 'Livia', 'Santana', '00991173040', 'usuario521'),
+(null, 2, 'Felipe', 'Norberto', '50206345062', 'usuario592'),
+(null, 2, 'Renato', 'Santoru', '67602959000', 'usuario548'),
+(null, 3, 'Silvia', 'Viena', '48887684049', 'usuario567'),
+(null, 3, 'Marcos', 'Pagliani', '14732116035', 'usuario540');
 
 insert into Endereco values
 (null, 'São Paulo', 08756180, 'Botucatu', 'Rua Genival Morato Prates', 'Parque dos Montes', 310, 'Academia Fisicult', 1),
@@ -47,9 +47,12 @@ insert into Telefone values
 (null, '1136076763', '11933181022', 3);
 
 insert into Produto values
-(null, 'Mamão', 'Fruta', '11.50', '83.50', 1),
-(null, 'Mamão', 'Fruta', '11.50', '83.50', 2),
-(null, 'Mamão', 'Fruta', '11.50', '83.50', 3);
+(null, 'Mamão', 'Fruta', '11.50', '75', 1),
+(null, 'Mamão', 'Fruta', '11.50', '75', 2),
+(null, 'Mamão', 'Fruta', '11.50', '75', 3),
+(null, 'Mamão', 'Fruta', '11.50', '75', 4),
+(null, 'Mamão', 'Fruta', '11.50', '75', 5),
+(null, 'Mamão', 'Fruta', '11.50', '75', 6);
 
 insert into Sensor values 
 (null, 'DHT11', 'Ativo', 1),
@@ -57,7 +60,13 @@ insert into Sensor values
 (null, 'DHT11', 'Inativo', 2),
 (null, 'LM35', 'Ativo', 2),
 (null, 'DHT11', 'Ativo', 3),
-(null, 'LM35', 'Ativo', 3);
+(null, 'LM35', 'Ativo', 3),
+(null, 'DHT11', 'Ativo', 4),
+(null, 'LM35', 'Ativo', 4),
+(null, 'DHT11', 'Ativo', 5),
+(null, 'LM35', 'Inativo', 5),
+(null, 'DHT11', 'Ativo', 6),
+(null, 'LM35', 'Ativo', 6);
 
 insert into SensorDados values
 (null, 1, '82.00', '11.00', current_timestamp),
@@ -65,10 +74,15 @@ insert into SensorDados values
 (null, 3, null, null, current_timestamp),
 (null, 4, null, '12.00', current_timestamp),
 (null, 5, '83.22', '11.50', current_timestamp),
-(null, 6, null, '11.50', current_timestamp);
+(null, 6, null, '11.50', current_timestamp),
+(null, 7, '75', '11.50', current_timestamp),
+(null, 8, null, '11.50', current_timestamp),
+(null, 9, '77', '11.00', current_timestamp),
+(null, 10, null, null, current_timestamp),
+(null, 11, '86', '10.00', current_timestamp),
+(null, 12, null, '12.00', current_timestamp);
 
-
--- SELECTS
+-- CONSULTAS
 select * from Transportadora;
 select * from Usuario;
 select * from Endereco;
@@ -78,6 +92,7 @@ select * from Produto;
 select * from Sensor;
 select * from SensorDados;
 
+-- CONSULTAS DE INTERLIGAÇÃO
 select * from Usuario join Transportadora 
 on idTransportadora = fkTransportadora;
 
@@ -90,8 +105,25 @@ on idTransportadora = fkTranspCam;
 select * from Transportadora join Telefone 
 on idTransportadora = fkTranspTel;
 
+select * from Caminhao join Produto
+on idCaminhao = fkCaminhaoProd;
+
 select * from Caminhao join Sensor
 on idCaminhao = fkCaminhaoSens;
 
 select * from Sensor join SensorDados
+on idSensor = fkSensor;
+
+-- CONSULTA DADOS ATÉ CLIENTE
+select * from Usuario join Transportadora 
+on idTransportadora = fkTransportadora join Caminhao 
+on idTransportadora = fkTranspCam join Produto 
+on idCaminhao = fkCaminhaoProd join Sensor 
+on idCaminhao = fkCaminhaoSens join SensorDados
+on idSensor = fkSensor;
+
+-- CONSULTA CAMINHÃO
+select * from Caminhao join Produto
+on idCaminhao = fkCaminhaoProd join Sensor
+on idCaminhao = fkCaminhaoSens join SensorDados
 on idSensor = fkSensor;
