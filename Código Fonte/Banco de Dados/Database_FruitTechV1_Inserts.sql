@@ -47,12 +47,12 @@ insert into Telefone values
 (null, '1136076763', '11933181022', 3);
 
 insert into Produto values
-(null, 'Mamão', 'Fruta', '11.50', '75', 1),
-(null, 'Mamão', 'Fruta', '11.50', '75', 2),
-(null, 'Mamão', 'Fruta', '11.50', '75', 3),
-(null, 'Mamão', 'Fruta', '11.50', '75', 4),
-(null, 'Mamão', 'Fruta', '11.50', '75', 5),
-(null, 'Mamão', 'Fruta', '11.50', '75', 6);
+(null, 'Mamão', 'Fruta', '11.50', '75.00', 1),
+(null, 'Mamão', 'Fruta', '11.50', '75.00', 2),
+(null, 'Mamão', 'Fruta', '11.50', '75.00', 3),
+(null, 'Mamão', 'Fruta', '11.50', '75.00', 4),
+(null, 'Mamão', 'Fruta', '11.50', '75.00', 5),
+(null, 'Mamão', 'Fruta', '11.50', '75.00', 6);
 
 insert into Sensor values 
 (null, 'DHT11', 'Ativo', 1),
@@ -73,13 +73,13 @@ insert into SensorDados values
 (null, 2, null, '11.00', current_timestamp),
 (null, 3, null, null, current_timestamp),
 (null, 4, null, '12.00', current_timestamp),
-(null, 5, '83.22', '11.50', current_timestamp),
+(null, 5, '83.00', '11.50', current_timestamp),
 (null, 6, null, '11.50', current_timestamp),
-(null, 7, '75', '11.50', current_timestamp),
+(null, 7, '75.00', '11.50', current_timestamp),
 (null, 8, null, '11.50', current_timestamp),
-(null, 9, '77', '11.00', current_timestamp),
+(null, 9, '77.60', '11.00', current_timestamp),
 (null, 10, null, null, current_timestamp),
-(null, 11, '86', '10.00', current_timestamp),
+(null, 11, '86.45', '10.00', current_timestamp),
 (null, 12, null, '12.00', current_timestamp);
 
 -- CONSULTAS
@@ -120,10 +120,12 @@ on idTransportadora = fkTransportadora join Caminhao
 on idTransportadora = fkTranspCam join Produto 
 on idCaminhao = fkCaminhaoProd join Sensor 
 on idCaminhao = fkCaminhaoSens join SensorDados
-on idSensor = fkSensor;
+on idSensor = fkSensor
+where Usuario.nomeUsuario in ('Marcos', 'Silvia');
 
 -- CONSULTA CAMINHÃO
 select * from Caminhao join Produto
 on idCaminhao = fkCaminhaoProd join Sensor
 on idCaminhao = fkCaminhaoSens join SensorDados
-on idSensor = fkSensor;
+on idSensor = fkSensor
+where Caminhao.idCaminhao in ('5', '6');

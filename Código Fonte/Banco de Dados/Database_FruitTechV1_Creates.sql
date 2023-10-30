@@ -62,8 +62,8 @@ create table Produto (
 idProduto int primary key auto_increment,
 nomeProduto varchar(40),
 tipoProduto varchar(30),
-tempIdeal decimal (5,2),
-umidIdeal int,
+temperaturaIdeal decimal (5,2),
+umidadeIdeal decimal (5,2),
 fkCaminhaoProd int, 
 constraint fkCaminhaoProd foreign key (fkCaminhaoProd) references Caminhao(idCaminhao)
 );
@@ -80,7 +80,7 @@ create table SensorDados (
 idSensorDados int auto_increment,
 fkSensor int,
 primary key (idSensorDados, fkSensor),
-umidade int,
+umidade double,
 temperatura double,
 data_hora timestamp,
 constraint fkSensor foreign key (fkSensor) references Sensor(idSensor)
