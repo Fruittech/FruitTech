@@ -96,12 +96,14 @@ select * from SensorDados;
 select * from Usuario join Transportadora 
 on idTransportadora = fkTransportadora;
 
+-- 1
 select * from Transportadora join Endereco
 on idTransportadora = fkTranspEnd;
 
 select * from Transportadora join Caminhao
 on idTransportadora = fkTranspCam;
 
+-- 2
 select * from Transportadora join Telefone 
 on idTransportadora = fkTranspTel;
 
