@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'Sora';
+    src: url(assets/fonte/Sora-VariableFont_wght.ttf);
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar {
+    font-family: 'Sora', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    background-color: #0E6616;
+    padding: 20px;
+    box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    height: 30%;
+}
+
+.navbar a {
+    display: block;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.navbar .main__logo img {
+    width: 100%;
+}
+
+/*
+.navbar li s {
+    display: block;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+*/
+
+.logoff {
+    position: absolute;
+    width: 200px;
+    bottom: 10%;
+    text-decoration: none;
+    display: block;
+    padding: 0;
+    transition: background-color 0.3s;
+}
+
+.caixaDashboard {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 2.5%;
+    height: 106vh;
+    margin-left: 20%;
+}
+
+.grafico {
+    display: flex;
+    flex-direction: row;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 1%;
+    background-color: rgba(136, 206, 235, 0.6);
+    border: 1px solid;
+    border-radius: 15px;
+}
+
+.bolinha {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: green;
+    border-radius: 8px;
+}
+
+
+.bolinha2 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: green;
+    border-radius: 16px;
+}
+
+.situacaoCaminhoes {
+    display: flex;
+    align-items: center;
+}
+
+.situacaoCaminhoes ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.situacaoCaminhoes ul li {
+    font-family: 'Sora', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.situacaoCaminhoes ul li button {
+    width: 160px;
+    height: 30px;
+    background-color: #E9D208;
+    color: whitesmoke;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid black;
+    margin-top: 1%;
+}
+
+.caixaSituacaoCaminhao {
+    display: flex;
+    align-content: center;
+    width: 20%;
+    justify-content: space-around;
+    margin: 1% 0;
+}

@@ -5,165 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/styleDashboard.css">
     <title>Dashboard FruitTech</title>
 </head>
-
-<style>
-    @font-face {
-        font-family: 'Sora';
-        src: url(assets/fonte/Sora-VariableFont_wght.ttf);
-    }
-
-    body {
-        margin: 0;
-    }
-
-    .container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .navbar {
-        font-family: 'Sora', sans-serif;
-        display: flex;
-        flex-direction: column;
-        width: 15%;
-        background-color: #0E6616;
-        padding: 20px;
-        box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        height: 100vh;
-        position: fixed;
-    }
-
-    .navbar ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        list-style: none;
-        padding: 0;
-        height: 30%;
-    }
-
-    .navbar a {
-        display: block;
-        padding: 10px;
-        border: 2px solid white;
-        border-radius: 5px;
-        text-decoration: none;
-        color: white;
-        transition: background-color 0.3s;
-    }
-
-    .navbar .main__logo img {
-        width: 100%;
-    }
-
-    /*
-    .navbar li s {
-        display: block;
-        padding: 10px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        text-decoration: none;
-        color: white;
-        transition: background-color 0.3s;
-    }
-    */
-
-    .logoff {
-        position: absolute;
-        width: 200px;
-        bottom: 10%;
-        text-decoration: none;
-        display: block;
-        padding: 0;
-        transition: background-color 0.3s;
-    }
-
-    .caixaDashboard {
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        margin: 0 2.5%;
-        height: 106vh;
-        margin-left: 20%;
-    }
-
-    .grafico {
-        display: flex;
-        flex-direction: row;
-        border: 1px rgba(0, 0, 0, 0.2) solid;
-    }
-
-
-    .header {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 200px;
-        margin-top: 1%;
-        background-color: rgba(136, 206, 235, 0.6);
-        border: 1px solid;
-        border-radius: 15px;
-    }
-
-    .bolinha {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background-color: green;
-        border-radius: 8px;
-    }
-
-
-    .bolinha2 {
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        background-color: green;
-        border-radius: 16px;
-    }
-
-    .situacaoCaminhoes {
-        display: flex;
-        align-items: center;
-    }
-
-    .situacaoCaminhoes ul li a{
-        text-decoration: none;
-        color: black;
-    }
-
-    .situacaoCaminhoes ul li {
-        font-family: 'Sora', sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .situacaoCaminhoes ul li button {
-        width: 160px;
-        height: 30px;
-        background-color: #E9D208;
-        color: whitesmoke;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        border: 1px solid black;
-        margin-top: 1%;
-    }
-
-    .caixaSituacaoCaminhao {
-        display: flex;
-        align-content: center;
-        width: 20%;
-        justify-content: space-around;
-        margin: 1% 0;
-    }
-</style>
 
 
 <body>
@@ -185,25 +29,30 @@
         <div class="caixaDashboard">
             <div>
                 <div class="header">
-
+                <div style="display: flex; flex-direction: row;">
                     <div class="situacaoCaminhoes" style="width: 25%; height: 100%;">
                         <ul style="list-style: none;">
-                            <li><a href="#caminhao1">Caminhão 1</a>
-                                <div style="background-color: red;" class="bolinha"></div>
-                            </li>
-                            <li><a href="#caminhao2">Caminhão 2</a>
-                                <div class="bolinha"></div>
-                            </li>
-                            <li><a href="#caminhao3">Caminhão 3</a>
-                                <div style="background-color: yellow;" class="bolinha"></div>
-                            </li>
-                            <li><a href="#caminhao4">Caminhão 4</a>
-                                <div class="bolinha"></div>
-                            </li>
-                            <li><button id="esconderMostrar" onclick="esconderGraficos()">Esconder Gráficos</button>
-                            </li>
-                            <li><button id="mostrarAlertas" onclick="mostrarAlerts()">Mostrar Alertas</button>
-                            </li>
+                            <li">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀T⠀U</li>
+                                <li><a href="#caminhao1">Caminhão 1</a>
+                                    <div style="background-color: orange;" class="bolinha"></div>
+                                    <div class="bolinha"></div>
+                                </li>
+                                <li><a href="#caminhao2">Caminhão 2</a>
+                                    <div class="bolinha"></div>
+                                    <div class="bolinha"></div>
+                                </li>
+                                <li><a href="#caminhao3">Caminhão 3</a>
+                                    <div class="bolinha"></div>
+                                    <div style="background-color: yellow;" class="bolinha"></div>
+                                </li>
+                                <li><a href="#caminhao4">Caminhão 4</a>
+                                    <div class="bolinha"></div>
+                                    <div class="bolinha"></div>
+                                </li>
+                                <li><button id="esconderMostrar" onclick="esconderGraficos()">Esconder Gráficos</button>
+                                </li>
+                                <li><button id="mostrarAlertas" onclick="mostrarAlerts()">Mostrar Alertas</button>
+                                </li>
                         </ul>
                     </div>
                     <div style="width: 75%; height: 100%; display: flex; align-items: center; justify-content: center;">
@@ -211,91 +60,93 @@
                     </div>
                 </div>
             </div>
-            <div class="sobreGrafico">
-                <div class="caixaSituacaoCaminhao">
-                    <button id="caminhao1" onclick="switchGraficos()"> <img src="assets/img/caminhao-bau.png"
-                            style="width: 40px; height: 40px;"></button>
-                    <div
-                        style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                        Caminhão 1</div>
-                    <div style="align-self: center; background-color: red;" class="bolinha2"></div>
-                </div>
-                <hr>
-                <div id="mostrarGraficos" class="grafico">
-                    <div>
-                        <canvas id="myChart"
-                            style="width: 175%; height: 50%; background-color: rgba(255, 0, 0, 0.15);"></canvas>
-                    </div>
-
-                    <div>
-                        <canvas id="myChart2" style="width: 175%; height: 50%; "></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="sobreGrafico">
-                <div class="caixaSituacaoCaminhao">
-                    <button id="caminhao2" onclick="switchGraficos1()"> <img src="assets/img/caminhao-bau.png"
-                            style="width: 40px; height: 40px;"></button>
-                    <div
-                        style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                        Caminhão 2</div>
-                    <div style="align-self: center" class="bolinha2"></div>
-                </div>
-                <hr>
-                <div id="mostrarGraficos1" class="grafico">
-                    <div>
-                        <canvas id="myChart3" style="width: 175%; height: 50%;"></canvas>
-                    </div>
-
-                    <div>
-                        <canvas id="myChart4" style="width: 175%; height: 50%;"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="sobreGrafico">
-                <div class="caixaSituacaoCaminhao">
-                    <button id="caminhao3" onclick="switchGraficos2()"> <img src="assets/img/caminhao-bau.png"
-                            style="width: 40px; height: 40px;"></button>
-                    <div
-                        style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                        Caminhão 3</div>
-                    <div style="align-self: center; background-color: yellow;" class="bolinha2">
-                    </div>
-                </div>
-                <hr>
-                <div id="mostrarGraficos2" class="grafico">
-                    <div>
-                        <canvas id="myChart5" style="width: 175%; height: 50%;"></canvas>
-                    </div>
-
-                    <div>
-                        <canvas id="myChart6"
-                            style="width: 175%; height: 50%; background-color: rgba(255,255, 0, 0.3);"></canvas>
-                    </div>
-                </div>
-            </div class="caixaSituacaoCaminhao">
-            <div class="sobreGrafico">
-                <div class="caixaSituacaoCaminhao">
-                    <button id="caminhao4" onclick="switchGraficos3()"> <img src="assets/img/caminhao-bau.png"
-                            style="width: 40px; height: 40px; border: none; background: none; outline: none; color: transparent;"></button>
-                    <div
-                        style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                        Caminhão 4</div>
-                    <div style="align-self: center" class="bolinha2"></div>
-                </div>
-                <hr>
-                <div id="mostrarGraficos3" class="grafico">
-                    <div>
-                        <canvas id="myChart7" style="width: 175%; height: 50%;"></canvas>
-                    </div>
-
-                    <div>
-                        <canvas id="myChart8" style="width: 175%; height: 50%;"></canvas>
-                    </div>
-                </div>
-            </div>
-            <br><br><br>
         </div>
+        <br><br>
+        <div class="sobreGrafico">
+            <div class="caixaSituacaoCaminhao">
+                <button id="caminhao1" onclick="switchGraficos()"> <img src="assets/img/caminhao-bau.png"
+                        style="width: 40px; height: 40px;"></button>
+                <div
+                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
+                    Caminhão 1</div>
+                <div style="align-self: center; background-color: orange;" class="bolinha2"></div>
+            </div>
+            <hr>
+            <div id="mostrarGraficos" class="grafico">
+                <div>
+                    <canvas id="myChart"
+                        style="width: 175%; height: 50%; background-color: rgba(255, 0, 0, 0.15);"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="myChart2" style="width: 175%; height: 50%; "></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="sobreGrafico">
+            <div class="caixaSituacaoCaminhao">
+                <button id="caminhao2" onclick="switchGraficos1()"> <img src="assets/img/caminhao-bau.png"
+                        style="width: 40px; height: 40px;"></button>
+                <div
+                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
+                    Caminhão 2</div>
+                <div style="align-self: center" class="bolinha2"></div>
+            </div>
+            <hr>
+            <div id="mostrarGraficos1" class="grafico">
+                <div>
+                    <canvas id="myChart3" style="width: 175%; height: 50%;"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="myChart4" style="width: 175%; height: 50%;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="sobreGrafico">
+            <div class="caixaSituacaoCaminhao">
+                <button id="caminhao3" onclick="switchGraficos2()"> <img src="assets/img/caminhao-bau.png"
+                        style="width: 40px; height: 40px;"></button>
+                <div
+                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
+                    Caminhão 3</div>
+                <div style="align-self: center; background-color: yellow;" class="bolinha2">
+                </div>
+            </div>
+            <hr>
+            <div id="mostrarGraficos2" class="grafico">
+                <div>
+                    <canvas id="myChart5" style="width: 175%; height: 50%;"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="myChart6"
+                        style="width: 175%; height: 50%; background-color: rgba(255,255, 0, 0.3);"></canvas>
+                </div>
+            </div>
+        </div class="caixaSituacaoCaminhao">
+        <div class="sobreGrafico">
+            <div class="caixaSituacaoCaminhao">
+                <button id="caminhao4" onclick="switchGraficos3()"> <img src="assets/img/caminhao-bau.png"
+                        style="width: 40px; height: 40px; border: none; background: none; outline: none; color: transparent;"></button>
+                <div
+                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
+                    Caminhão 4</div>
+                <div style="align-self: center" class="bolinha2"></div>
+            </div>
+            <hr>
+            <div id="mostrarGraficos3" class="grafico">
+                <div>
+                    <canvas id="myChart7" style="width: 175%; height: 50%;"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="myChart8" style="width: 175%; height: 50%;"></canvas>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
     </div>
 </body>
 
