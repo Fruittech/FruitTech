@@ -9,7 +9,7 @@
 
   <body>
     <div class="titulo">
-      <img src="assets/logo.jpg" class="img" />
+      <img src="assets/img/logo.png" class="img" />
     </div>
 
     <div class="escopo" id="input_div">
@@ -46,7 +46,7 @@
     // calculo para frota
     var frota = Number(input_frota.value);
     var distancia = Number(input_distancia.value);
-    var valorSensor = 250;
+    var valorSensor = 500;
 
     //calculo perda faturamento
 
@@ -61,14 +61,13 @@
     // Oculta o div anterior
     document.getElementById("input_div").style.display = "none";
 
-    var valorFrota = frota * 6720; // frota * valor para chamar o serviço se tiver;
-    var valorFrete = distancia * frota * 3.56 + frota * 364.71; // distancia * valor do frete;
-    var precoSensores = valorSensor * frota * 2; // sensores para camara fria e para os caminhões
+    var valorFrota = frota * 3320; // frota * valor para chamar o serviço se tiver;
+    var precoSensores = valorSensor * frota * 4; // sensores para camara fria e para os caminhões
 
     //calculo ROI
 
     var retornoTotal = perdaFatTransporte * 2;
-    var investimentoProjeto = valorFrota + precoSensores + valorFrete; // ter frota propria / cobrar frete alto pois é refrigerado / rever valor inicial
+    var investimentoProjeto = valorFrota + precoSensores; // ter frota propria / cobrar frete alto pois é refrigerado / rever valor inicial
     var roi =
       ((retornoTotal - investimentoProjeto) / investimentoProjeto) * 100;
 
@@ -82,7 +81,7 @@
         <b>Perda da carga total anual (20%):</b> ${perdaCargaTotal} t<br> 
         <b>Perda financeira total anual (20%):</b> R$ ${perdaFatTotal}<br><br>
         
-        <i>Iremos reduzir as suas perdas para <b>pelo menos 3% </b>, reduzindo <b>(R$${perdaFatTransporte})</b> dos <b>R$${perdaFatTotal}</b> perdidos no seu faturamento durante o transporte. Ou seja, depois da implementação do sistema, as suas perdas do transporte cairão para <b>R$${valorRestaurado}</b>.<br><br>
+        <i>Iremos reduzir as suas perdas para <b>pelo menos 3% </b>, reduzindo <b>(R$${perdaFatTransporte})</b> dos <b>R$${perdaFatTotal}</b> perdidos durante o transporte. Depois da implementação do sistema, as perdas no transporte cairão para <b>R$${valorRestaurado}</b>.<br><br>
         
 	O valor final do projeto está previsto em <b>R$ ${investimentoProjeto}.</b><br><br>
 
