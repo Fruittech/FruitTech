@@ -116,6 +116,7 @@ on idCaminhao = fkCaminhaoSens;
 select * from Sensor join SensorDados
 on idSensor = fkSensor;
 
+-- 3
 -- CONSULTA DADOS ATÉ CLIENTE
 select * from Usuario join Transportadora 
 on idTransportadora = fkTransportadora join Caminhao 
@@ -123,8 +124,9 @@ on idTransportadora = fkTranspCam join Produto
 on idCaminhao = fkCaminhaoProd join Sensor 
 on idCaminhao = fkCaminhaoSens join SensorDados
 on idSensor = fkSensor
-where Usuario.nomeUsuario in ('Marcos', 'Silvia');
+where Usuario.nomeUsuario = 'Marcos';
 
+-- 4
 -- CONSULTA CAMINHÃO
 select * from Caminhao join Produto
 on idCaminhao = fkCaminhaoProd join Sensor
