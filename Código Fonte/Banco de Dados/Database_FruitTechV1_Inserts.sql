@@ -16,9 +16,9 @@ describe SensorDados;
 
 -- INSERÇÃO DE DADOS
 insert into Transportadora values
-(null, 'MamãoTransp', 78711574000165, 35622079, 'TAC', 'mamaotransp@gmail.com', 'formosapapaya'),
-(null, 'FruitServices', 89653455528924, 95322475, 'ETC', 'fruitservices@gmail.com', 'frutasfrescas52'),
-(null, 'TranspTrip', 65542376689045, 67789290, 'CTC', 'transptrip@gmail.com', 'tranptrippassword');
+(null, 'MamãoTransp', 78711574000165, 'mamaotransp@gmail.com', 'formosapapaya'),
+(null, 'FruitServices', 89653455528924, 'fruitservices@gmail.com', 'frutasfrescas52'),
+(null, 'TranspTrip', 65542376689045, 'transptrip@gmail.com', 'tranptrippassword');
 
 insert into Usuario values
 (null, 1, 'Roberto', 'Manci', '78500623445', 'usuario573'),
@@ -55,32 +55,22 @@ insert into Produto values
 (null, 'Mamão', 'Fruta', '11.50', '75.00', 6);
 
 insert into Sensor values 
-(null, 'DHT11', 'Ativo', 1),
-(null, 'LM35', 'Ativo', 1),
-(null, 'DHT11', 'Inativo', 2),
-(null, 'LM35', 'Ativo', 2),
-(null, 'DHT11', 'Ativo', 3),
-(null, 'LM35', 'Ativo', 3),
-(null, 'DHT11', 'Ativo', 4),
-(null, 'LM35', 'Ativo', 4),
-(null, 'DHT11', 'Ativo', 5),
-(null, 'LM35', 'Inativo', 5),
-(null, 'DHT11', 'Ativo', 6),
-(null, 'LM35', 'Ativo', 6);
+(null, 'DHT11', 1),
+(null, 'DHT11', 2),
+(null, 'LM35', 1),
+(null, 'LM35', 2);
 
-insert into SensorDados values
+insert into SensorDadosDHT11 values
 (null, 1, '82.00', '11.00', current_timestamp),
-(null, 2, null, '11.00', current_timestamp),
-(null, 3, null, null, current_timestamp),
-(null, 4, null, '12.00', current_timestamp),
-(null, 5, '83.00', '11.50', current_timestamp),
-(null, 6, null, '11.50', current_timestamp),
-(null, 7, '75.00', '11.50', current_timestamp),
-(null, 8, null, '11.50', current_timestamp),
-(null, 9, '77.60', '11.00', current_timestamp),
-(null, 10, null, null, current_timestamp),
-(null, 11, '86.45', '10.00', current_timestamp),
-(null, 12, null, '12.00', current_timestamp);
+(null, 1, '83.00', '11.00', current_timestamp),
+(null, 2, '83.00', '12.00', current_timestamp),
+(null, 2, '85.00', '12.00', current_timestamp);
+
+insert into SensorDadosLM35 values
+(null, 3, '11.00', current_timestamp),
+(null, 3, '11.00', current_timestamp),
+(null, 4, '12.00', current_timestamp),
+(null, 4, '12.00', current_timestamp);
 
 -- CONSULTAS
 select * from Transportadora;
@@ -90,20 +80,19 @@ select * from Caminhao;
 select * from Telefone;
 select * from Produto;
 select * from Sensor;
-select * from SensorDados;
+select * from SensorDadosDHT11;
+select * from SensorDadosLM35;
 
 -- CONSULTAS DE INTERLIGAÇÃO
 select * from Usuario join Transportadora 
 on idTransportadora = fkTransportadora;
 
--- 1
 select * from Transportadora join Endereco
 on idTransportadora = fkTranspEnd;
 
 select * from Transportadora join Caminhao
 on idTransportadora = fkTranspCam;
 
--- 2
 select * from Transportadora join Telefone 
 on idTransportadora = fkTranspTel;
 
@@ -113,20 +102,22 @@ on idCaminhao = fkCaminhaoProd;
 select * from Caminhao join Sensor
 on idCaminhao = fkCaminhaoSens;
 
-select * from Sensor join SensorDados
-on idSensor = fkSensor;
+select * from Sensor join SensorDadosDHT11
+on idSensor = fkSensorDHT;
 
--- 3
+select * from Sensor join SensorDadosLM35
+on idSensor = fkSensorLM;
+
 -- CONSULTA DADOS ATÉ CLIENTE
 select * from Usuario join Transportadora 
 on idTransportadora = fkTransportadora join Caminhao 
 on idTransportadora = fkTranspCam join Produto 
 on idCaminhao = fkCaminhaoProd join Sensor 
-on idCaminhao = fkCaminhaoSens join SensorDados
+on idCaminhao = fkCaminhaoSens join SensorDadosDHT11
+on idSensor = fkSensor join SensorDadosLM35 
 on idSensor = fkSensor
 where Usuario.nomeUsuario = 'Marcos';
 
--- 4
 -- CONSULTA CAMINHÃO
 select * from Caminhao join Produto
 on idCaminhao = fkCaminhaoProd join Sensor

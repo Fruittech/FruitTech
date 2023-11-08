@@ -9,8 +9,6 @@ create table Transportadora (
 idTransportadora int primary key auto_increment,
 nomeTransportadora varchar(45),
 cnpj char(14),
-RNTRC varchar(14),
-categoriaRNTRC char(3),
 emailTransportadora varchar(60),
 senhaTransportadora varchar(30)
 );
@@ -71,11 +69,30 @@ constraint fkCaminhaoProd foreign key (fkCaminhaoProd) references Caminhao(idCam
 create table Sensor (
 idSensor int primary key auto_increment,
 tipo varchar(5),
-statusMonitoramento char(7),
 fkCaminhaoSens int, 
 constraint fkCaminhaoSens foreign key (fkCaminhaoSens) references Caminhao(idCaminhao)
 );
 
+create table SensorDadosDHT11 (
+idDHT11 int auto_increment,
+fkSensorDHT int,
+primary key (idDHT11, fkSensorDHT),
+temperatura double,
+umidade double,
+data_hora timestamp,
+constraint fkSensorDHT foreign key (fkSensorDHT) references Sensor(idSensor)
+);
+
+create table SensorDadosLM35 (
+idLM35 int auto_increment,
+fkSensorLM int,
+primary key (idLM35, fkSensorLM),
+temperatura double,
+data_hora timestamp,
+constraint fkSensorLM foreign key (fkSensorLM) references Sensor(idSensor)
+);
+
+/*
 create table SensorDados (
 idSensorDados int auto_increment,
 fkSensor int,
@@ -85,6 +102,7 @@ temperatura double,
 data_hora timestamp,
 constraint fkSensor foreign key (fkSensor) references Sensor(idSensor)
 );
+*/
 
 -- DESCRIÇÃO
 describe Transportadora;
