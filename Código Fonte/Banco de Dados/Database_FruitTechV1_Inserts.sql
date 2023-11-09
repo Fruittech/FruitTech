@@ -113,10 +113,23 @@ select * from Usuario join Transportadora
 on idTransportadora = fkTransportadora join Caminhao 
 on idTransportadora = fkTranspCam join Produto 
 on idCaminhao = fkCaminhaoProd join Sensor 
+on idCaminhao = fkCaminhaoSens join SensorDadosLM35
+on idSensor = fkSensorLM;
+
+select * from Usuario join Transportadora 
+on idTransportadora = fkTransportadora join Caminhao 
+on idTransportadora = fkTranspCam join Produto 
+on idCaminhao = fkCaminhaoProd join Sensor 
 on idCaminhao = fkCaminhaoSens join SensorDadosDHT11
-on idSensor = fkSensor join SensorDadosLM35 
-on idSensor = fkSensor
-where Usuario.nomeUsuario = 'Marcos';
+on idSensor = fkSensorDHT;
+
+select * from Usuario join Transportadora 
+on idTransportadora = fkTransportadora join Caminhao 
+on idTransportadora = fkTranspCam join Produto 
+on idCaminhao = fkCaminhaoProd join Sensor 
+on idCaminhao = fkCaminhaoSens join SensorDadosDHT11
+on idSensor = fkSensorDHT join SensorDadosLM35
+on idSensor = fkSensorLM;
 
 -- CONSULTA CAMINHÃO
 select * from Caminhao join Produto
