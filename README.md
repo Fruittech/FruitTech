@@ -3,9 +3,17 @@
 
   
 # Estrutura do repositório.
-- <b>README.md:</b> Este arquivo contém informações detalhadas sobre o projeto, descrição, funcionalidades, tecnologias & informação relevantes.
+- <b>README.md:</b> Este arquivo contém informações detalhadas sobre o projeto, informação relevantes.
 
-- <b>Código fonte:</b> Esta pasta contém o código fonte do projeto, organizado em diretórios e arquivos apropriados.
+- <b>LICENSE:</b> Licença MIT.
+
+- <b>package.json:</b> Pacote de configuração JSON.
+
+- <b>fruittech/public</b> Elementos estátáticos, Front-end, client-server.
+
+- <b>fruittech/src</b>Código fonte, Back-end, server.
+
+- <b>fruittech/app.js</b>Arquivo de parametrização do ambiente.
 
 
 # Regras de Condução, projeto FruitTech.
