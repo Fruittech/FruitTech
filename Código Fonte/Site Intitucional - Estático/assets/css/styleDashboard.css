@@ -49,6 +49,8 @@ body {
 
 .navbar .main__logo img {
     width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
 }
 
 /*
@@ -74,12 +76,18 @@ body {
 }
 
 .caixaDashboard {
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     width: 80%;
     margin: 0 2.5%;
     height: 106vh;
     margin-left: 20%;
+}
+
+.caixaDashboard img {
+    background-color: rgba(255, 255, 255, 0.5);
+
 }
 
 .grafico {
