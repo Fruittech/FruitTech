@@ -50,6 +50,16 @@
                     <button type="button" class="main__btn" onclick="Login()">Entrar na conta</button>
                 </article>
                 <!-- <article class="main__articleMiddle"> -->
+
+                    <article class="main__articleMiddle">
+                        <div class="or-container">
+                            <div class="left-line-or"></div>
+                                <h2 class="word-or">OU</h2>
+                            <div class="right-line-or"></div>
+                        </div>
+                        <b><a href="#">Entre como Funcionário</a></b>
+                    </article> 
+
                 <article class="main__articleLower">
                     Não tem uma conta? <b><a href="cadastroEmpresa.html">Cadastrar conta</a></b>
                 </article>
@@ -69,6 +79,7 @@
         inputCNPJ.value = CNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
     }
 
+    /*
     function Login() {
 
         var cnpj = (input_CNPJ.value);
@@ -84,9 +95,9 @@
             AbreErro(`Email ou Senha incorretos`)
 
         }
-
-
+        
     }
+    */
 
     function AbreErro(mensagem) {
         errorBg.style = 'display: block'
@@ -100,15 +111,68 @@
         cardError.style = 'display: none'
     }
 
+
+
+    function Login() {
+       // aguardar();
+
+        var CNPJVar = input_CNPJ.value;
+        var senhaVar = input_senha.value;
+
+        if (CNPJVar == "" || senhaVar == "") {
+            AbreErro(`Email ou Senha vazios`);
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", CNPJVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/empresa/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                CNPJServer: CNPJVar,
+                senhaServer: senhaVar
+            })
+        })
+        
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome
+
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
 </script>
 
-
-<!-- main que ficará no meio -->
-<!-- <article class="main__articleMiddle">
-                    <div class="or-container">
-                        <div class="left-line-or"></div>
-                            <h2 class="word-or">OU</h2>
-                        <div class="right-line-or"></div>
-                    </div>
-                    <b><a href="#">Entre como Funcionário</a></b>
-                </article> -->
