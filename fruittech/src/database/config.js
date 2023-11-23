@@ -17,12 +17,20 @@ var sql = require('mssql');
 //     }
 // }
 
-// CONEXÃO DO MYSQL WORKBENCH
+// CONEXÃO DO MYSQL WORKBENCH - FACULDADE
+// var mySqlConfig = {
+//     host: "localhost",
+//     database: "FruitTechV1",
+//     user: "aluno",
+//     password: "sptech",
+// };
+
+// CONEXÃO DO MYSQL WORKBENCH - PESSOAL
 var mySqlConfig = {
     host: "localhost",
     database: "FruitTechV1",
-    user: "aluno",
-    password: "sptech",
+    user: "root",
+    password: "159357",
 };
 
 function executar(instrucao) {

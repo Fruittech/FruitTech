@@ -9,18 +9,19 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
 var app = express();
 
 var indexRouter = require("./src/routes/index");
-var empresasRouter = require("./src/routes/empresas");
-var usuarioRouter = require("./src/routes/usuarios");
+var empresasRouter = require("./src/routes/empresa");
+var usuarioRouter = require("./src/routes/usuario");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public", "views")));
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("/empresas", empresasRouter);
-app.use("/usuarios", usuarioRouter);
+app.use("/empresa", empresasRouter);
+app.use("/usuario", usuarioRouter);
 
 
 
