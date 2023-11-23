@@ -5,36 +5,68 @@ create database FruitTechV1;
 use FruitTechV1;
 
 -- TABELAS
+create table Produto (
+idProduto int primary key auto_increment,
+nomeProduto varchar(40),
+tipoProduto varchar(30),
+temperaturaIdeal decimal (5,2),
+umidadeIdeal decimal (5,2)
+);
+
 create table Transportadora (
 idTransportadora int primary key auto_increment,
 nomeTransportadora varchar(45),
-cnpj char(14),
-emailTransportadora varchar(60),
-senhaTransportadora varchar(30)
+cnpj char(18),
+emailTransportadora varchar(90),
+senhaTransportadora varchar(45),
+transportadora_fkProduto INT,
+constraint foreign key (transportadora_fkProduto) references Produto(idProduto)
 );
 
-create table Usuario (
-idUsuario int auto_increment,
-fkTransportadora int,
-primary key (idUsuario, fkTransportadora),
-nomeUsuario varchar(40),
-sobrenomeUsuario varchar(40),
-cpf char(11),
-senhaUsuario varchar(30),
-constraint fkTransportadora foreign key (fkTransportadora) references Transportadora(idTransportadora)
+create table Telefone (
+idTelefone int primary key auto_increment,
+telefoneFixo varchar(30),
+telefoneCelular varchar(30),
+telefone_fkTransportadora int, 
+constraint foreign key (telefone_fkTransportadora) references Transportadora(idTransportadora)
 );
 
 create table Endereco (
 idEndereco int primary key auto_increment,
 estado varchar(30),
-cep char(8),
-cidade varchar(30),
-rua varchar(45),
-bairro varchar(45),
+cep char(9),
+cidade varchar(45),
+rua varchar(90),
+bairro varchar(90),
 numero int,
-complemento varchar(45),
-fkTranspEnd int, 
-constraint fkTranspEnd foreign key (fkTranspEnd) references Transportadora(idTransportadora)
+complemento varchar(90),
+Endereco_fkTransportadora int, 
+constraint foreign key (Endereco_fkTransportadora) references Transportadora(idTransportadora)
+);
+
+create table Funcionario (
+idFuncionario int primary key auto_increment,
+nomeFuncionario varchar(40),
+sobrenomeFuncionario varchar(40),
+cpf char(14),
+senhaUsuario varchar(30),
+funcionario_fkTransportadora int,
+constraint foreign key (funcionario_fkTransportadora) references Transportadora(idTransportadora)
+);
+
+create table Sensores (
+idSensores int primary key auto_increment,
+codigoSensores CHAR (36)
+);
+
+create table SensoresDados (
+idSensoresDados int primary key auto_increment,
+temperatura_LM35 double,
+umidade_DHT11 double,
+temperatura_DHT11 double,
+data_hora timestamp default current_timestamp,
+sensoresDados_fkSensores int,
+constraint foreign key (sensoresDados_fkSensores) references Sensores(idSensores)
 );
 
 create table Caminhao (
@@ -42,74 +74,21 @@ idCaminhao int primary key auto_increment,
 marcaCaminhao varchar(40),
 modeloCaminhao varchar(40),
 chassiCaminhao char(17),
-comprimentoCaminhao decimal(5,3),
-alturaCaminhao decimal(4,2),
-fkTranspCam int, 
-constraint fkTranspCam foreign key (fkTranspCam) references Transportadora(idTransportadora)
+comprimentoCaminhao double,
+alturaCaminhao double,
+Caminhao_fkTransportadora int,
+Caminhao_fkSensores int,
+constraint foreign key (Caminhao_fkTransportadora) references Transportadora(idTransportadora),
+constraint foreign key (Caminhao_fkSensores) references Sensores(idSensores)
 );
 
-create table Telefone (
-idTelefone int primary key auto_increment,
-telefoneFixo char(10),
-telefoneCelular char(11),
-fkTranspTel int, 
-constraint fkTranspTel foreign key (fkTranspTel) references Transportadora(idTransportadora)
-);
-
-create table Produto (
-idProduto int primary key auto_increment,
-nomeProduto varchar(40),
-tipoProduto varchar(30),
-temperaturaIdeal decimal (5,2),
-umidadeIdeal decimal (5,2),
-fkCaminhaoProd int, 
-constraint fkCaminhaoProd foreign key (fkCaminhaoProd) references Caminhao(idCaminhao)
-);
-
-create table Sensor (
-idSensor int primary key auto_increment,
-tipo varchar(5),
-fkCaminhaoSens int, 
-constraint fkCaminhaoSens foreign key (fkCaminhaoSens) references Caminhao(idCaminhao)
-);
-
-create table SensorDadosDHT11 (
-idDHT11 int auto_increment,
-fkSensorDHT int,
-primary key (idDHT11, fkSensorDHT),
-temperatura double,
-umidade double,
-data_hora timestamp,
-constraint fkSensorDHT foreign key (fkSensorDHT) references Sensor(idSensor)
-);
-
-create table SensorDadosLM35 (
-idLM35 int auto_increment,
-fkSensorLM int,
-primary key (idLM35, fkSensorLM),
-temperatura double,
-data_hora timestamp,
-constraint fkSensorLM foreign key (fkSensorLM) references Sensor(idSensor)
-);
-
-/*
-create table SensorDados (
-idSensorDados int auto_increment,
-fkSensor int,
-primary key (idSensorDados, fkSensor),
-umidade double,
-temperatura double,
-data_hora timestamp,
-constraint fkSensor foreign key (fkSensor) references Sensor(idSensor)
-);
-*/
 
 -- DESCRIÇÃO
 describe Transportadora;
-describe Usuario;
+describe Funcionario;
 describe Endereco;
 describe Caminhao;
 describe Telefone;
 describe Produto;
-describe Sensor;
-describe SensorDados;
+describe Sensores;
+describe SensoresDados;
