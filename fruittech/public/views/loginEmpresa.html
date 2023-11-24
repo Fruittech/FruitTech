@@ -127,7 +127,7 @@
         console.log("FORM LOGIN: ", CNPJVar);
         console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/empresa/autenticar", {
+        fetch("/transportadora/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -147,13 +147,13 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome
+                    sessionStorage.ID_TRANSPORTADORA = json.id;
+                    sessionStorage.EMAIL_TRANSPORTADORA = json.email;
+                    sessionStorage.NOME_TRANSPORTADORA = json.nome
 
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
