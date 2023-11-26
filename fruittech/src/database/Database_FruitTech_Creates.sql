@@ -1,26 +1,16 @@
 -- drop database FruitTechV1;
 
-create database FruitTechV1;
+create database FruitTech;
 
-use FruitTechV1;
+use FruitTech;
 
 -- TABELAS
-create table Produto (
-idProduto int primary key auto_increment,
-nomeProduto varchar(40),
-tipoProduto varchar(30),
-temperaturaIdeal decimal (5,2),
-umidadeIdeal decimal (5,2)
-);
-
 create table Transportadora (
 idTransportadora int primary key auto_increment,
 nomeTransportadora varchar(45),
 cnpj char(18),
 emailTransportadora varchar(90),
-senhaTransportadora varchar(45),
-transportadora_fkProduto INT,
-constraint foreign key (transportadora_fkProduto) references Produto(idProduto)
+senhaTransportadora varchar(45)
 );
 
 create table Telefone (

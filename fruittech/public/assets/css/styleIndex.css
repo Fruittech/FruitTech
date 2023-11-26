@@ -37,7 +37,12 @@ html{
 
 
 .header {
+  height: 80px;
+  position: fixed;
   background-color: #FFFFFF;
+  width: 100vw;
+  z-index: 99;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .containerNavbar {
@@ -47,12 +52,14 @@ html{
   font-size: var(--fonteMedia);
   font-family: 'Sora', sans-serif;
   padding: 0 3rem;
-  font-weight: 400;
-  z-index: 99;
-  position: fixed;
+  font-weight: 600;
   background-color: white;
-  width: 100vw;
+  width: 1300px;
+  height: 100%;
+  margin: 0 auto;
 }
+
+
 
 .linksNavbar {
   padding: 0 0 0 0;
@@ -71,6 +78,11 @@ html{
 .linksNavbar ul li a {
   text-decoration: none;
   color: #000;
+}
+
+.linksNavbar ul li a:hover {
+  text-decoration: underline;
+  color: #0E6616;
 }
 
 .botoesNavbar {
@@ -96,12 +108,18 @@ html{
 }
 
 .botoesNavbar button {
+  cursor: pointer;
   height: 2.5vw;
   padding: 0px var(--fonteTexto);
   font-size: var(--fonteMedia);
   font-weight: bold;
   font-family: 'Sora' 'sans-serif';
 }
+
+.botoesNavbar div:hover {
+  filter: brightness(0.80);
+}
+
 
 h1 {
   color: #000;
@@ -116,7 +134,7 @@ body {
 
 .imagemPrincipal {
   display: flex;
-  background-image: url(../img/imagemPrincipal.png);
+  background-image: url(../img/fundo.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -130,7 +148,7 @@ body {
   font-family: 'Sora', sans-serif;
   font-weight: bolder;
   padding: 0.5rem;
-  line-height: 2.4rem;
+  line-height: 3.4rem;
 }
 
 .caixaTextoImagemPrincipal {
@@ -139,7 +157,7 @@ body {
   align-self: center;
   height: 25%;
   width: 60%;
-  margin: 0 0 5% 9.8%;
+  margin: 0 0 5% 19.8%;
 }
 
 .subtextoImagemPrincipal {
@@ -163,6 +181,10 @@ body {
   font-family: 'Sora', sans-serif;
   font-weight: 600;
   padding: 0.5rem 1.35rem 0.5rem 1.35rem;
+}
+
+.simuladorFinanceiro:hover{
+  filter: brightness(0.80);
 }
 
 .logoNavbar {
@@ -204,6 +226,10 @@ body {
   padding: 0px 1.5rem;
 }
 
+.tresQuadrados ul li:hover {
+  filter: brightness(0.90);
+}
+
 .quadradoBranco {
   display: flex;
   width: 350px;
@@ -243,7 +269,7 @@ body {
 
 .textoQuadrados {
   width: 100%;
-  margin: 20% 0;
+  margin: 10% 0;
   text-align: center;
   font-size: var(--fonteMedia);
   font-family: 'Sora', sans-serif;

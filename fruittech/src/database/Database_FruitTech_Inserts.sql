@@ -1,5 +1,5 @@
 --  drop database FruitTechV1;
-use FruitTechV1;
+use FruitTech;
 
 -- DESCRIÇÃO
 describe Transportadora;
@@ -13,13 +13,10 @@ describe SensoresDados;
 
 -- INSERÇÃO DE DADOS
 
-    insert into Produto values
-    (null, 'Mamão', 'Fruta', '11.50', '75.00');
-
     insert into Transportadora values
-    (null, 'MamãoTransp', '23.444.416/0001-02', 'mamaotransp@gmail.com', 'formosapapaya',1),
-    (null, 'FruitServices', '62.909.591/0001-71', 'fruitservices@gmail.com', 'frutasfrescas52',1),
-    (null, 'TranspTrip', '17.111.662/0001-31', 'transptrip@gmail.com', 'tranptrippassword',1);
+    (null, 'MamãoTransp', '23.444.416/0001-02', 'mamaotransp@gmail.com', 'formosapapaya'),
+    (null, 'FruitServices', '62.909.591/0001-71', 'fruitservices@gmail.com', 'frutasfrescas52'),
+    (null, 'TranspTrip', '17.111.662/0001-31', 'transptrip@gmail.com', 'tranptrippassword');
         
     insert into Telefone values
     (null, '1324007755', '13926763364', 1),
