@@ -11,6 +11,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var transportadoraRouter = require("./src/routes/transportadora");
 var funcionarioRouter = require("./src/routes/funcionario");
+var caminhaoRouter = require("./src/routes/caminhao");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +23,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/transportadora", transportadoraRouter);
 app.use("/funcionario", funcionarioRouter);
+app.use("/caminhao", caminhaoRouter);
 
 
 

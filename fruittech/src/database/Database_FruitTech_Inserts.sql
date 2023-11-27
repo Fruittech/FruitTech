@@ -3,13 +3,12 @@ use FruitTech;
 
 -- DESCRIÇÃO
 describe Transportadora;
-describe Funcionario;
-describe Endereco;
-describe Caminhao;
 describe Telefone;
-describe Produto;
+describe Endereco;
+describe Funcionario;
 describe Sensores;
 describe SensoresDados;
+describe Caminhao;
 
 -- INSERÇÃO DE DADOS
 

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.icon" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/styleLoginEmpresa.css">
-    <title>FRUITTECH | Login Empresa</title>
+    <link rel="stylesheet" href="../assets/css/styleLoginTransportadora.css">
+    <title>FRUITTECH | Login Trasportadora</title>
 </head>
 
 <body>
@@ -34,14 +34,14 @@
                         <div class="main__logo">
                             <img src="../assets/ico/logo-fruittech.svg" alt="">
                         </div>
-                        <span class="main__DescTitle">Realize seu <span>login</span> <b>empresa!</b></span>
+                        <span class="main__DescTitle">Realize seu <span>login</span> <b>Transportadora!</b></span>
                         <p class="main__subDescTitle">Bem-vindo de volta! Estamos prontos para continuar esta jornada
                             com você</p>
                     </div>
                     <div class="main__inputDates">
                         <div class="flex--bases">
                             <input type="text" id="input_CNPJ" class="input--bases" placeholder="CNPJ..."
-                                oninput="FormataCNPJ()" maxlength="14">
+                                oninput="FormataCNPJ()" maxlength="18">
                         </div>
                         <div class="flex--bases">
                             <input type="text" id="input_senha" class="input--bases" placeholder="Senha...">
@@ -51,18 +51,15 @@
                 </article>
                 <!-- <article class="main__articleMiddle"> -->
 
-                    <article class="main__articleMiddle">
-                        <div class="or-container">
-                            <div class="left-line-or"></div>
-                                <h2 class="word-or">OU</h2>
-                            <div class="right-line-or"></div>
-                        </div>
-                        <b><a href="#">Entre como Funcionário</a></b>
-                    </article> 
-
-                <article class="main__articleLower">
-                    Não tem uma conta? <b><a href="cadastroEmpresa.html">Cadastrar conta</a></b>
+                <article class="main__articleMiddle">
+                    <div class="or-container">
+                        <div class="left-line-or"></div>
+                        <h2 class="word-or">OU</h2>
+                        <div class="right-line-or"></div>
+                    </div>
+                    <b><a href="./loginFuncionario.html">Entre como Funcionário</a></b>
                 </article>
+
             </div>
         </section>
         </main>
@@ -73,11 +70,33 @@
 </html>
 
 <script>
-    function FormataCNPJ() {
-        var inputCNPJ = document.getElementById('input_CNPJ');
-        var CNPJ = inputCNPJ.value;
-        inputCNPJ.value = CNPJ.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
-    }
+    const input_CNPJ = document.getElementById('input_CNPJ');
+
+    input_CNPJ.addEventListener('input', () => {
+        let cnpj = input_CNPJ.value;
+
+        // Remove qualquer caractere que não seja número
+        cnpj = cnpj.replace(/\D/g, '');
+
+        // Formata o CNPJ
+        let cnpjFormatado = '';
+        for (let i = 0; i < cnpj.length; i++) {
+            if (i === 2 || i === 5) {
+                cnpjFormatado += '.';
+            }
+            if (i === 8) {
+                cnpjFormatado += '/';
+            }
+            if (i === 12) {
+                cnpjFormatado += '-';
+            }
+            cnpjFormatado += cnpj[i];
+        }
+
+        // Atualiza o valor no campo de input
+        input_CNPJ.value = cnpjFormatado;
+    });
+
 
     /*
     function Login() {
@@ -114,7 +133,7 @@
 
 
     function Login() {
-       // aguardar();
+        // aguardar();
 
         var CNPJVar = input_CNPJ.value;
         var senhaVar = input_senha.value;
@@ -137,42 +156,41 @@
                 senhaServer: senhaVar
             })
         })
-        
-        .then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.ID_TRANSPORTADORA = json.id;
-                    sessionStorage.EMAIL_TRANSPORTADORA = json.email;
-                    sessionStorage.NOME_TRANSPORTADORA = json.nome
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.ID_TRANSPORTADORA = json.id;
+                        sessionStorage.EMAIL_TRANSPORTADORA = json.email;
+                        sessionStorage.NOME_TRANSPORTADORA = json.nome
 
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
+                        setTimeout(function () {
+                            window.location = "./dashboard/dashboard.html";
+                        }, 1000); // apenas para exibir o loading
 
-                });
+                    });
 
-            } else {
+                } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
+                    console.log("Houve um erro ao tentar realizar o login!");
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+            }).catch(function (erro) {
+                console.log(erro);
+            })
 
         return false;
     }
 
 </script>
-

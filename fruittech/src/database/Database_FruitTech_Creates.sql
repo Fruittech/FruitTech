@@ -75,10 +75,10 @@ constraint foreign key (Caminhao_fkSensores) references Sensores(idSensores)
 
 -- DESCRIÇÃO
 describe Transportadora;
-describe Funcionario;
-describe Endereco;
-describe Caminhao;
 describe Telefone;
-describe Produto;
+describe Endereco;
+describe Funcionario;
 describe Sensores;
 describe SensoresDados;
+describe Caminhao;
+

@@ -24,7 +24,7 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -36,13 +36,13 @@ body {
     background-size: cover;
     display: flex;
     flex-direction: row-reverse;
-    background-image: url(../img/truck-right.png);
+    background-image: url(../img/truck-left.jpg);
 }
 
 .main__leftSection {
     width: 50%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.724) 20px 0px 50px 5px;
+    box-shadow: rgba(0, 0, 0, 0.724) -20px -2px 50px 5px;
 }
 
 .main__cardLogin {
@@ -52,7 +52,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    row-gap: 5%;
 }
 
 .main__articleUpper {

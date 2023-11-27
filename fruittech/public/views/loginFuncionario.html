@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.icon" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/styleLoginFuncionario.css">
+    <title>FRUITTECH | Login Funcionário</title>
+</head>
+
+<body>
+
+
+    <div class="main">
+        <div class="main__cardError" id="cardError">
+
+            <div class="main__content">
+                <span class="main__mensageError" id="mensageError"></span>
+            </div>
+            <hr style="opacity: 0.40;">
+            <div class="main__footerCardError">
+                <button class="main__tryAgain" type='button' onclick='FechaErro()'>Tentar Novamente</button>
+            </div>
+        </div>
+        <div class="main__errorBg" id="errorBg" onclick="FechaErro()"></div>
+        <section class="main__rightSection">
+
+        </section>
+        <section class="main__leftSection">
+            <div class="main__cardLogin">
+                <article class="main__articleUpper">
+                    <div class="main__descSignUp">
+                        <div class="main__logo">
+                            <img src="../assets/ico/logo-fruittech.svg" alt="">
+                        </div>
+                        <span class="main__DescTitle">Realize seu <span>login</span> <b
+                                style="color: var(--cor-destaque);">Funcionário!</b></span>
+                        <p class="main__subDescTitle">Bem-vindo de volta! Estamos prontos para continuar esta jornada
+                            com você</p>
+                    </div>
+                    <div class="main__inputDates">
+                        <div class="flex--bases">
+                            <input type="text" id="input_CPF" class="input--bases" placeholder="CPF..." maxlength="14">
+                        </div>
+                        <div class="flex--bases">
+                            <input type="text" id="input_senha" class="input--bases" placeholder="Senha...">
+                        </div>
+                    </div>
+                    <button type="button" class="main__btn" onclick="Login()">Entrar na conta</button>
+                </article>
+                <!-- <article class="main__articleMiddle"> -->
+
+                <article class="main__articleMiddle">
+                    <div class="or-container">
+                        <div class="left-line-or"></div>
+                        <h2 class="word-or">OU</h2>
+                        <div class="right-line-or"></div>
+                    </div>
+                    <b><a href="./loginTransportadora.html">Entre como Transportadora</a></b>
+                </article>
+
+            </div>
+        </section>
+        </main>
+
+
+</body>
+
+</html>
+
+<script>
+
+    // Adiciona um ouvinte de evento para o campo de CPF
+    const input_CPF = document.getElementById('input_CPF');
+
+    input_CPF.addEventListener('input', () => {
+        let cpf = input_CPF.value;
+
+        // Remove qualquer caractere que não seja número
+        cpf = cpf.replace(/\D/g, '');
+
+        // Formata o CPF
+        let cpfFormatado = '';
+        for (let i = 0; i < cpf.length; i++) {
+            if (i === 3 || i === 6) {
+                cpfFormatado += '.';
+            }
+            if (i === 9) {
+                cpfFormatado += '-';
+            }
+            cpfFormatado += cpf[i];
+        }
+
+        // Atualiza o valor no campo de input
+        input_CPF.value = cpfFormatado;
+    });
+
+
+
+    function AbreErro(mensagem) {
+        errorBg.style = 'display: block'
+        cardError.style = 'display: block'
+        mensageError.innerText = `${mensagem}`
+
+    }
+
+    function FechaErro() {
+        errorBg.style = 'display: none'
+        cardError.style = 'display: none'
+    }
+
+
+
+    function Login() {
+        // aguardar();
+
+        var CPFVar = input_CPF.value;
+        var senhaVar = input_senha.value;
+
+        if (CPFVar == "" || senhaVar == "") {
+            AbreErro(`Email ou Senha vazios`);
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", CPFVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/funcionario/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                CPFServer: CPFVar,
+                senhaServer: senhaVar
+            })
+        })
+
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.ID_FUNCIONARIO = json.id;
+                        sessionStorage.NOME_FUNCIONARIO = json.nome;
+                        sessionStorage.CAMINHOES_TRANSPORTADORA_FUNCIONARIO = JSON.stringify(json.caminhoes);
+                        
+                        setTimeout(function () {
+                            window.location = "./dashboard/dashboard.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+        return false;
+    }
+
+</script>
