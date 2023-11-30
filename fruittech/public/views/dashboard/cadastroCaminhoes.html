@@ -65,7 +65,7 @@
                                             placeholder="Código do sensor..." maxlength="36">
                                     </div>
                                 </div>
-                                <button type="button" class="main__btn" onclick="Cadastrar()">Cadastrar
+                                <button type="button" class="main__btn" onclick="CadastrarCaminhao()">Cadastrar
                                     Caminhão</button>
                             </article>
                         </div>
@@ -89,72 +89,81 @@
 
 <script>
 
-function cadastraCaminhao(){
+function CadastrarCaminhao(){
     
-    aguardar();
+    // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var marcaCaminhao = input_marcaCaminhao.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var empresaVar = listaEmpresas.value
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      empresaVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+    var marca = input_marcaCaminhao.value;
+    var modelo = input_modeloCaminhao.value;
+    var chassi = input_chassiCaminhao.value;
+    var comprimento = input_comprimentoCaminhao.value;
+    var altura = input_alturaCaminhao.value;
+    var codigoSensor = input_codigoSensor.value
 
-      finalizarAguardar();
+    var idTransportadora = sessionStorage.ID_TRANSPORTADORA
+    if (
+      marca == "" ||
+      modelo == "" ||
+      chassi == "" ||
+      comprimento == "" ||
+      altura == "" ||
+      codigoSensor == "" ||
+      idTransportadora == ""
+    ) {
+    //   cardErro.style.display = "block";
+    //   mensagem_erro.innerHTML =
+    //     "(Mensagem de erro para todos os campos em branco)";
+
+    //   finalizarAguardar();
+    alert('Há algum campo vazio!')
       return false;
     } else {
-      setInterval(sumirMensagem, 5000);
-    }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
+    fetch(`/caminhao/cadastrar/${idTransportadora}`, {
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        empresaServer: empresaVar
+        marcaServer : marca,
+        modeloServer : modelo,
+        chassiServer : chassi,
+        comprimentoServer : comprimento,
+        alturaServer : altura,
+        codigoSensorServer : codigoSensor
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+        //   cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+        //   mensagem_erro.innerHTML =
+        //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+        alert('Cadastro do caminhão realizado com sucesso! Redirecionando para dashboard.')
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "./dashboard.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+        //   limparFormulario();
+        //   finalizarAguardar();
+        } else{
+            throw "Houve um erro ao tentar realizar o cadastro do caminhão!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        // finalizarAguardar();
       });
+
+      }
 
     return false;
  
