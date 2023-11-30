@@ -22,7 +22,7 @@
                 <li><a href="#">Cadastro Caminhões</a></li>
                 <li><a href="#">Cadastro Funcionarios</a></li>
                 <li><a href="#">Configuração</a></li>
-                <button onclick="limparSessao()" class="logoff">Sair</button>
+                <li><a onclick="limparSessao()" class="logoff">Sair</a></li>
             </ul>
         </div>
 
@@ -88,293 +88,76 @@
 </html>
 
 <script>
-    const labels = [
-        '12:00',
-        '13:00',
-        '14:00',
-        '15:00',
-        '16:00',
-        '17:00',
-    ];
 
-    const labels2 = [
-        '12:00',
-        '13:00',
-        '14:00',
-        '15:00',
-        '16:00',
-        '17:00',
-    ];
+function cadastraCaminhao(){
+    
+    aguardar();
 
-    const config = {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'TEMPERATURA (DHT11)',
-                backgroundColor: '#E9D208',
-                borderColor: '#E9D208',
-                data: [9.5, 9, 10, 10, 9.5, 9],
-            },
-            {
-                label: 'TEMPERATURA (LM35)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [9.5, 9, 9.5, 10, 9, 9],
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var marcaCaminhao = input_marcaCaminhao.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var empresaVar = listaEmpresas.value
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      empresaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
 
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
 
-    const config2 = {
-        type: 'bar',
-        data: {
-            labels: labels2,
-            datasets: [{
-                label: 'UMIDADE (DHT11)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [75, 77, 78, 76, 76, 79],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        empresaServer: empresaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-    const config3 = {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'TEMPERATURA (DHT11)',
-                backgroundColor: '#E9D208',
-                borderColor: '#E9D208',
-                data: [12, 10, 9.5, 10, 10.5, 11],
-            },
-            {
-                label: 'TEMPERATURA (LM35)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [11, 10, 10, 10.5, 10.5, 11],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
+        if (resposta.ok) {
+          cardErro.style.display = "block";
 
-    const config4 = {
-        type: 'bar',
-        data: {
-            labels: labels2,
-            datasets: [{
-                label: 'UMIDADE (DHT11)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [79, 81, 80, 77, 76, 73],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-    const config5 = {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'TEMPERATURA (DHT11)',
-                backgroundColor: '#E9D208',
-                borderColor: '#E9D208',
-                data: [9, 11, 10, 12, 10, 8],
-            },
-            {
-                label: 'TEMPERATURA (LM35)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [10, 11, 10, 11, 10, 9],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
 
-    const config6 = {
-        type: 'bar',
-        data: {
-            labels: labels2,
-            datasets: [{
-                label: 'UMIDADE (DHT11)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [59, 60, 59, 61, 62, 63],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
-
-    const config7 = {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'TEMPERATURA (DHT11)',
-                backgroundColor: '#E9D208',
-                borderColor: '#E9D208',
-                data: [8, 10, 11, 10, 12, 10],
-            },
-            {
-                label: 'TEMPERATURA (LM35)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [9, 10, 11, 10, 11, 10],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
-
-    const config8 = {
-        type: 'bar',
-        data: {
-            labels: labels2,
-            datasets: [{
-                label: 'UMIDADE (DHT11)',
-                backgroundColor: '#0E6616',
-                borderColor: '#0E6616',
-                data: [72, 71, 73, 75, 71, 68],
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    };
-
-
-</script>
-
-
-<script>
-
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
-
-    const myChart2 = new Chart(
-        document.getElementById('myChart2'),
-        config2
-    );
-
-    const myChart3 = new Chart(
-        document.getElementById('myChart3'),
-        config3
-    );
-
-    const myChart4 = new Chart(
-        document.getElementById('myChart4'),
-        config4
-    );
-
-    const myChart5 = new Chart(
-        document.getElementById('myChart5'),
-        config5
-    );
-
-    const myChart6 = new Chart(
-        document.getElementById('myChart6'),
-        config6
-    );
-
-    const myChart7 = new Chart(
-        document.getElementById('myChart7'),
-        config7
-    );
-
-    const myChart8 = new Chart(
-        document.getElementById('myChart8'),
-        config8
-    );
-
-
-
-</script>
-
-<!--Script para fazer aparecer os gráficos-->
-<script>
-
-    var interruptor = 1;
-    var interruptor1 = 1;
-    var interruptor2 = 1;
-    var interruptor3 = 1;
-    var esconderMostrarGraficos = 0;
-
-
-    function switchGraficos() {
-        interruptor++;
-
-        if (interruptor == 1) {
-            mostrarGraficos.style.display = 'flex';
+          limparFormulario();
+          finalizarAguardar();
         } else {
-            mostrarGraficos.style.display = 'none';
-            interruptor = 0;
+          throw "Houve um erro ao tentar realizar o cadastro!";
         }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
 
-    }
+    return false;
+ 
 
-    function switchGraficos1() {
-        interruptor1++;
-
-        if (interruptor1 == 1) {
-            mostrarGraficos1.style.display = 'flex';
-        } else {
-            mostrarGraficos1.style.display = 'none';
-            interruptor1 = 0;
-        }
-
-    }
-
-    function switchGraficos2() {
-        interruptor2++;
-
-        if (interruptor2 == 1) {
-            mostrarGraficos2.style.display = 'flex';
-        } else {
-            mostrarGraficos2.style.display = 'none';
-            interruptor2 = 0;
-        }
-
-    }
-
-    function switchGraficos3() {
-        interruptor3++;
-
-        if (interruptor3 == 1) {
-            mostrarGraficos3.style.display = 'flex';
-        } else {
-            mostrarGraficos3.style.display = 'none';
-            interruptor3 = 0;
-        }
-
-    }
-
-    function esconderGraficos() {
-
-        esconderMostrarGraficos++;
-
-        if (esconderMostrarGraficos == 1) {
-            esconderMostrar.innerHTML = `Mostrar Gráficos`
-        } else {
-            esconderMostrar.innerHTML = `Esconder Gráficos`
-            esconderMostrarGraficos = 0
-        }
-
-        switchGraficos();
-        switchGraficos1();
-        switchGraficos2();
-        switchGraficos3();
-    }
-
-    function mostrarAlerts() {
-
-        mostrarGraficos.style.display = 'flex';
-        mostrarGraficos1.style.display = 'none';
-        mostrarGraficos2.style.display = 'flex';
-        mostrarGraficos3.style.display = 'none';
-
-    }
-
+}
 </script>
