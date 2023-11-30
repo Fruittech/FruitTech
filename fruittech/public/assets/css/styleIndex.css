@@ -30,9 +30,9 @@
   src: url(../font/Sora-VariableFont_wght.ttf) format('opentype');
 }
 
-html{
+html {
   scroll-behavior: smooth;
-  
+
 }
 
 
@@ -89,10 +89,10 @@ html{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  column-gap: 20px ;
+  column-gap: 20px;
   margin: 0;
   padding: 0;
-  
+
 }
 
 .botoesNavbar ul {
@@ -183,7 +183,7 @@ body {
   padding: 0.5rem 1.35rem 0.5rem 1.35rem;
 }
 
-.simuladorFinanceiro:hover{
+.simuladorFinanceiro:hover {
   filter: brightness(0.80);
 }
 
@@ -277,7 +277,7 @@ body {
 
 }
 
-.bordaQuadradoBranco{
+.bordaQuadradoBranco {
   display: flex;
   align-self: center;
   justify-self: center;
@@ -289,7 +289,7 @@ body {
   margin: 15% 30% 0 30%;
 }
 
-.bordaQuadradoVerde{
+.bordaQuadradoVerde {
   display: flex;
   align-self: center;
   justify-self: center;
@@ -497,10 +497,12 @@ body {
   border: 1px solid black;
   border-radius: 2px;
   margin-left: 43%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .botaoItem2Final {
-  width: 13%;
+  width: 36%;
   height: 2.4vw;
   padding: 0px var(--fonteTexto);
   font-size: var(--fonteMedia);
@@ -571,4 +573,48 @@ body {
   font-weight: 300;
   width: 40%;
   margin-bottom: 10%;
+}
+
+.containerChamado {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #1f1f1f;
+  padding: 2px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.fecharAba {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+}
+
+.blur {
+  filter: blur(5px);
+}
+
+.containerAtendimento {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #1f1f1f;
+  padding: 2px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.fecharAbaAtendimento {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  cursor: pointer;
 }

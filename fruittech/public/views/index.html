@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="header">
+  <div class="header" id="header">
     <div class="containerNavbar">
       <div class="caixaLogoNavbar">
         <div class="logoNavbar">
@@ -32,14 +32,14 @@
         </div>
         <div>
           <a href="cadastroEmpresa.html">
-          <button
-            style="background-color: #0E6616; border: 1px solid #0E6616; border-radius: 5px; color: white;">Contate-nos</button>
+            <button
+              style="background-color: #0E6616; border: 1px solid #0E6616; border-radius: 5px; color: white;">Contate-nos</button>
           </a>
         </div>
       </div>
     </div>
   </div>
-  <div id="home" class="imagemPrincipal">
+  <div id="home imagemPrincipal" class="imagemPrincipal">
     <div class="caixaTextoImagemPrincipal">
       <div class="textoImagemPrincipal">Monitoramento inteligente no<br>transporte de mamão!</div>
       <div class="subtextoImagemPrincipal">Monitoramento preciso de temperatura e umidade para<br>conservação &
@@ -59,7 +59,8 @@
                 <div class="bordaQuadradoBranco">
                   <div class="imagemQuadrado"><img src="../assets/img/reducao.jpg"></div>
                 </div>
-                <div class="textoQuadrados">Redução de - <u style="color: #0E6616;">Perdas<br> no transporte da fruta</u><br>
+                <div class="textoQuadrados">Redução de - <u style="color: #0E6616;">Perdas<br> no transporte da
+                    fruta</u><br>
                 </div>
               </div>
           </li>
@@ -95,8 +96,8 @@
 
 
 
-  <div class="espacoBranco"></div>
-  <div class="containerSobreNos">
+  <div class="espacoBranco" id="espacoBranco"></div>
+  <div class="containerSobreNos" id="containerSobreNos">
     <div id="sobreNos" style="display: flex; align-items: center;">
       <img src="../assets/img/marcadorVerde.png" alt="" style="margin: 0; float: left;">
       <div style="font-family: 'Sora', 'sans-serif'; font-weight: 600; font-size: 1.75rem; margin-left: 0.5rem;">Sobre
@@ -141,15 +142,18 @@
             class="fonte1TextoSobre">As <u style="color: #C7B200;">frutas</u> tendem a ser <u
               style="color: #C7B200;">mais sensíveis</u style="color: #C7B200;">. Muitas frutas
             apodrecem mais rápido após a colheita, as chamadas <u style="color: #C7B200;">frutas climatéricas</u>.
-            O <u style="color: #C7B200;">MAMÃO</u> é uma delas. O transporte da fruta é a etapa mais crítica da sua cadeia produtiva, que <u style="color: #C7B200;">sem</u> o <u
-              style="color: #C7B200;">controle</u> das condições <u style="color: #C7B200;">climáticas</u>, a leva a <u
+            O <u style="color: #C7B200;">MAMÃO</u> é uma delas. O transporte da fruta é a etapa mais crítica da sua
+            cadeia produtiva, que <u style="color: #C7B200;">sem</u> o <u style="color: #C7B200;">controle</u> das
+            condições <u style="color: #C7B200;">climáticas</u>, a leva a <u
               style="color: #C7B200;">deterioração</u>.</span><br><br>
 
-          <span class="fonte2TextoSobre"><u>FruitTech</u> Monit. inteligente de Mamão</span><span class="fonte3TextoSobre"
-            style="color: #C7B200; font-size: 25px;"><br>Adotando tecnologias IOT para solução</span><br>
+          <span class="fonte2TextoSobre"><u>FruitTech</u> Monit. inteligente de Mamão</span><span
+            class="fonte3TextoSobre" style="color: #C7B200; font-size: 25px;"><br>Adotando tecnologias IOT para
+            solução</span><br>
           <span class="fonte1TextoSobre">Pensando nisso, criamos a <u style="color: #C7B200;">FruitTech</u>,
-            especializada no monitoramento inteligente de <u style="color: #C7B200;">MAMÃO</u>, com objetivo de disponibilizar <u style="color: #C7B200;">tecnologias</u> para <u
-              style="color: #C7B200;">monitoramento</u> no <u style="color: #C7B200;">transporte</u> da fruta, por
+            especializada no monitoramento inteligente de <u style="color: #C7B200;">MAMÃO</u>, com objetivo de
+            disponibilizar <u style="color: #C7B200;">tecnologias</u> para <u style="color: #C7B200;">monitoramento</u>
+            no <u style="color: #C7B200;">transporte</u> da fruta, por
             meio da <u style="color: #C7B200;">IOT</u> (Internet das Coisas).</span><br>
         </div>
       </div>
@@ -177,16 +181,17 @@
     <!--FIM QUADRO 3-->
   </div> <br> <br> <br> <br>
 
-  <div class="fundoFinal">
+  <div class="fundoFinal" id="fundoFinal">
 
     <div class="containerFinal">
       <div id="contato" class="linha1Final">
         <div class="item1LinhaFinal">Entre em contato para se manter atualizado(a) conosco!</div>
         <div class="item2LinhaFinal">
-          <div style="  display: flex; justify-content: space-evenly; width: 100%; align-items: center;">
-            <input class="inputItem2Final" type="text">
-            <button class="botaoItem2Final"
-              style="background-color: #0E6616; border: 1px solid #0E6616; border-radius: 5px; color: white;">Enviar</button>
+          <div style="  display: flex; justify-content: flex-end; width: 100%; align-items: center;">
+            <button onclick="abrirAtendimento()" class="botaoItem2Final"
+              style="background-color: #0E6616; border: 1px solid #0E6616; border-radius: 5px; color: white; cursor: pointer">Entre
+              em
+              contato conosco</button>
           </div>
         </div>
       </div>
@@ -204,7 +209,7 @@
           </div>
           <div class="colunaTabelaLinksFinal">
             <div style="color: #0E6616; font-weight: 800">Help Desk</div><br>
-            <a href="https://app.pipefy.com/public/form/MvhuSUXa"">Abrir chamado</a><br>
+            <a style="cursor: pointer" onclick="abrirChamado()">Abrir chamado</a><br>
             <a>Notícias</a>
           </div>
           <div class="colunaTabelaLinksFinal">
@@ -229,7 +234,84 @@
 
   </div>
 
+  <div style="display: none;" id="containerChamado" class="containerChamado">
+    <div id="fecharAba" class="fecharAba" id="fecharChamado" onclick="fecharChamado()">X</div>
+    <div id="chamado">
+      <iframe width='560' height='580' src='https://app.pipefy.com/public/form/MvhuSUXa?embedded=true'
+        frameborder='0'></iframe>
+    </div>
   </div>
+
+  <div style="display: none;" id="containerAtendimento" class="containerAtendimento">
+    <div id="fecharAbaAtendimento" class="fecharAbaAtendimento" id="fecharChamadoAtendimento"
+      onclick="fecharAtendimento()">X</div>
+    <div id="Atendimento">
+      <iframe width='560' height='580' src='https://app.pipefy.com/public/form/DDV1Uu3u?embedded=true'
+        frameborder='0'></iframe>
+    </div>
+  </div>
+
 </body>
 
 </html>
+
+<script>
+
+  function abrirChamado() {
+
+    containerChamado.style.display = `flex`;
+
+    chamado.innerHTML = `<iframe width='560' height='580' src='https://app.pipefy.com/public/form/MvhuSUXa?embedded=true'
+              frameborder='0'></iframe>`
+
+    fecharAba.classList.add('fecharAba');
+    fundoFinal.classList.add('blur');
+    header.classList.add('blur');
+    imagemPrincipal.classList.add('blur');
+    espacoBranco.classList.add('blur');
+    containerSobreNos.classList.add('blur');
+
+  }
+
+  function fecharChamado() {
+    containerChamado.style.display = `none`;
+
+    fecharAba.classList.add('fecharAba');
+    fundoFinal.classList.remove('blur');
+    header.classList.remove('blur');
+    imagemPrincipal.classList.remove('blur');
+    espacoBranco.classList.remove('blur');
+    containerSobreNos.classList.remove('blur');
+  }
+
+  function abrirAtendimento() {
+
+    containerAtendimento.style.display = `flex`;
+
+    Atendimento.innerHTML = `
+    <iframe width='560' height='580'
+      src='https://app.pipefy.com/public/form/DDV1Uu3u?embedded=true'
+      frameborder='0'
+    ></iframe>`
+
+    fecharAbaAtendimento.classList.add('fecharAbaAtendimento');
+    fundoFinal.classList.add('blur');
+    header.classList.add('blur');
+    imagemPrincipal.classList.add('blur');
+    espacoBranco.classList.add('blur');
+    containerSobreNos.classList.add('blur');
+
+  }
+
+  function fecharAtendimento() {
+    containerAtendimento.style.display = `none`;
+
+    fecharAbaAtendimento.classList.add('fecharAbaAtendimento');
+    fundoFinal.classList.remove('blur');
+    header.classList.remove('blur');
+    imagemPrincipal.classList.remove('blur');
+    espacoBranco.classList.remove('blur');
+    containerSobreNos.classList.remove('blur');
+  }
+
+</script>
