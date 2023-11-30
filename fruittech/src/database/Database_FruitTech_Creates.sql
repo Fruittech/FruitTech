@@ -1,4 +1,4 @@
--- drop database FruitTechV1;
+-- drop database FruitTech;
 
 create database FruitTech;
 

@@ -21,7 +21,6 @@ body{
     --bg-cor-input: #E0EBE1;
 
 } 
-  
 
 .main{
     width: 100vw;
@@ -187,9 +186,9 @@ body{
 }
 
 .main__btn{
-    height: 80px;
+    height: 120px;
     /* width: 100px; */
-    border: none;
+    border: none; 
     border-radius: 5px;
     color: #ffffff;
     background-color: var(--cor-destaque);
@@ -249,8 +248,6 @@ body{
     height: 70px;
     border-radius: 0 0 10px 10px;
 }
-
-
 
 .main__tryAgain{
     font-family: Arial, Helvetica, sans-serif;

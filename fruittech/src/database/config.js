@@ -26,11 +26,19 @@ var sql = require('mssql');
 // };
 
 // CONEXÃO DO MYSQL WORKBENCH - ISAAC
+// var mySqlConfig = {
+//     host: "localhost",
+//     database: "FruitTech",
+//     user: "root",
+//     password: "159357",
+// };
+
+// CONEXÃO DO MYSQL WORKBENCH - LEONARDO
 var mySqlConfig = {
     host: "localhost",
     database: "FruitTech",
     user: "root",
-    password: "159357",
+    password: "leo17130202",
 };
 
 function executar(instrucao) {

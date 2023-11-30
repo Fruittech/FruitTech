@@ -1,0 +1,363 @@
+@font-face {
+    font-family: 'Sora';
+    src: url(assets/fonte/Sora-VariableFont_wght.ttf);
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    --cor-destaque: #0E6616;
+    --tamanho-base-fonte: 12.5px;
+    --bg-cor-input: #E0EBE1;
+
+} 
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar {
+    font-family: 'Sora', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    background-color: #0e661523;
+    padding: 20px;
+    /* box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    border: 1px solid rgba(0, 0, 0, 0.322);
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    height: 30%;
+
+}
+
+.navbar a {
+    display: block;
+    padding: 10px;
+    border: 1px solid #0e6616;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+    color: #0e6616;
+}
+
+.navbar .main__logo img {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+/*
+.navbar li s {
+    display: block;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+*/
+
+.logoff {
+    position: absolute;
+    width: 200px;
+    bottom: 10%;
+    text-decoration: none;
+    display: block;
+    padding: 0;
+    transition: background-color 0.3s;
+}
+
+.caixaDashboard {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 2.5%;
+    height: 106vh;
+    margin-left: 20%;
+}
+
+.caixaDashboard img {
+    background-color: rgba(255, 255, 255, 0.5);
+
+}
+
+.grafico {
+    display: flex;
+    flex-direction: row;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 1%;
+    background-color: #0e661523;
+    border: 1px solid rgba(0, 0, 0, 0.322);
+    /* border-radius: 15px; */
+}
+
+.bolinha {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: green;
+    border-radius: 8px;
+    margin: 2px 2px;
+}
+
+
+.bolinha2 {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: green;
+    border-radius: 16px;
+}
+
+.situacaoCaminhoes {
+    display: flex;
+    align-items: center;
+}
+
+.situacaoCaminhoes ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.situacaoCaminhoes ul li {
+    font-family: 'Sora', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.situacaoCaminhoes ul li button {
+    width: 160px;
+    height: 30px;
+    background-color: #0e6616;
+    color: whitesmoke;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid black;
+    margin-top: 1%;
+}
+
+.caixaSituacaoCaminhao {
+    display: flex;
+    align-content: center;
+    width: 20%;
+    justify-content: space-around;
+    margin: 1% 0;
+}
+
+.main__rightSection{
+    width: 100%;
+    height: 30%;
+    /* box-shadow: rgba(0, 0, 0, 0.724) 0px 0px 50px 20px; */
+}
+
+.main__cardLogin{
+    padding: 10px 35px;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.main__articleUpper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.main__descSignUp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+
+}
+
+.main__logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.main__DescTitle, .main__DescTitle span, .main__DescTitle b{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.main__DescTitle, .main__DescTitle span{
+    font-weight: 100;
+}
+
+.main__DescTitle span {
+    border-bottom: 1px solid var(--cor-destaque); /* Espessura e cor do sublinhado */
+    text-decoration: none;
+}
+
+.main__subDescTitle{
+    width: 65%;
+    font-size: 1.40em;
+    text-align: center;
+}
+
+.main__inputDates{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+
+}
+
+.input--bases{
+    height: 50px;
+    /* width: 100px; */
+    border: none;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    font-size: 1.5em;
+    padding-left: 10px;
+    
+}
+
+.input--bases::placeholder{
+    color: var(--placeholder-text-color);
+}
+
+.flex--bases{
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+}
+
+#input_marcaCaminhao{
+    flex-grow: 1;
+}
+
+#input_modeloCaminhao{
+    flex-grow: 2;
+}
+
+#input_chassiCaminhao{
+    flex-grow: 1;
+}
+
+#input_comprimentoCaminhao{
+    flex-grow: 1;
+}
+
+#input_alturaCaminhao{
+    flex-grow: 2;
+}
+
+#input_codigoSensor{
+    flex-grow: 1;
+}
+
+.main__btn{
+    height: 80px;
+    /* width: 100px; */
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: var(--cor-destaque);
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-left: 10px;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.main__btn:hover{
+    filter: brightness(0.75);
+}
+
+.main__errorBg{
+    display: none;
+    position: absolute;
+    background-color: hsla(0, 0%, 0%, 0.335);
+    width: 100vw;
+    height: 100vh;
+}
+
+.main__cardError{
+    display: none;
+    z-index: 2; 
+    width: 400px;
+    height: 180px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: absolute; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.main__content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+
+}
+
+.main__mensageError{
+    text-align: center;
+    font-size: 2.0em;
+    font-weight: 200;
+    
+
+
+}
+
+.main__footerCardError{
+    width: 100%;
+    background-color: #77a87b63;
+    height: 70px;
+    border-radius: 0 0 10px 10px;
+}
+
+
+
+.main__tryAgain{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #77A87B;
+    background-color: #ffffff;
+    padding: 1em 2em;
+    border: none;
+    border-radius: .6rem;
+    position: relative;
+    left: 120px;
+    top: 15px;
+    cursor: pointer;
+    overflow: hidden;
+  }

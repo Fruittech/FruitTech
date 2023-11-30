@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../assets/js/sessao.js"></script>
-    <link rel="stylesheet" href="../../assets/css/styleDashboard.css">
-    <title>Dashboard FruitTech</title>
+    <link rel="stylesheet" href="../../assets/css/styleCadastroCaminhoes.css">
+    <title>Cadastro Caminhão</title>
 </head>
 
 <body onload="validarSessao()">
@@ -17,12 +17,9 @@
             <div class="main__logo">
                 <img src="../../assets/img/logo2.png" alt="">
             </div>
-            <div id="name_session">
-
-            </div>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="cadastroCaminhoes.html">Cadastro Caminhões</a></li>
+                <li><a href="#">Cadastro Caminhões</a></li>
                 <li><a href="#">Cadastro Funcionarios</a></li>
                 <li><a href="#">Configuração</a></li>
                 <button onclick="limparSessao()" class="logoff">Sair</button>
@@ -33,128 +30,55 @@
         <div class="caixaDashboard">
             <div>
                 <div class="header">
-                <div style="display: flex; flex-direction: row;">
-                    <div class="situacaoCaminhoes" style="width: 25%; height: 100%;">
-                        <ul style="list-style: none;">
-                            <li">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<b>U</b>⠀<b>T</b>⠀<b>T</b></li>
-                                <li><a href="#caminhao1">Caminhão 1</a>
-                                    <div class="bolinha"></div>
-                                    <div style="background-color: orange;" class="bolinha"></div>
-                                    <div style="background-color: orange;" class="bolinha"></div>
-                                </li>
-                                <li><a href="#caminhao2">Caminhão 2</a>
-                                    <div class="bolinha"></div>
-                                    <div class="bolinha"></div>
-                                    <div class="bolinha"></div>
-                                </li>
-                                <li><a href="#caminhao3">Caminhão 3</a>
-                                    <div style="background-color: yellow;" class="bolinha"></div>
-                                    <div class="bolinha"></div>
-                                    <div class="bolinha"></div>
-                                </li>
-                                <li><a href="#caminhao4">Caminhão 4</a>
-                                    <div class="bolinha"></div>
-                                    <div class="bolinha"></div>
-                                    <div class="bolinha"></div>
-                                </li>
-                                <li><button id="esconderMostrar" onclick="esconderGraficos()">Esconder Gráficos</button>
-                                </li>
-                                <li><button id="mostrarAlertas" onclick="mostrarAlerts()">Mostrar Alertas</button>
-                                </li>
-                        </ul>
-                    </div>
-                    <div style="width: 75%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <img style="width: 70%" src="../../assets/img/Umidade DHT11.png" alt="">
-                    </div>
+                    <section class="main__rightSection">
+                        <div class="main__cardLogin">
+                            <article class="main__articleUpper">
+                                <div class="main__descSignUp">
+                                    <div class="main__logo">
+                                        <img src="../assets/ico/logo-fruittech.svg" alt="">
+                                    </div>
+                                    <span class="main__DescTitle">Realize o <span>cadastro</span> do
+                                        <b>caminhão!</b></span>
+                                    <p class="main__subDescTitle">Sua jornada conosco começa com um simples passo.
+                                        Obtenha
+                                        monitoramento inteligente!</p>
+                                </div>
+                                <div class="main__inputDates">
+                                    <div class="flex--bases">
+                                        <input type="text" id="input_marcaCaminhao" class="input--bases"
+                                            placeholder="Marca...">
+                                    </div>
+                                    <div class="flex--bases">
+                                        <input type="text" id="input_modeloCaminhao" class="input--bases"
+                                            placeholder="Modelo...">
+                                        <input type="text" id="input_chassiCaminhao" class="input--bases"
+                                            placeholder="Chassi..." maxlength="17">
+                                    </div>
+                                    <div class="flex--bases">
+                                        <input type="number" id="input_comprimentoCaminhao" class="input--bases"
+                                            placeholder="Comprimento (m)...">
+                                        <input type="number" id="input_alturaCaminhao" class="input--bases"
+                                            placeholder="Altura...">
+                                    </div>
+                                    <div class="flex--bases">
+                                        <input type="text" id="input_codigoSensor" class="input--bases"
+                                            placeholder="Código do sensor..." maxlength="36">
+                                    </div>
+                                </div>
+                                <button type="button" class="main__btn" onclick="Cadastrar()">Cadastrar
+                                    Caminhão</button>
+                            </article>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </div>
-        <br><br>
-        <div class="sobreGrafico">
-            <div class="caixaSituacaoCaminhao">
-                <button id="caminhao1" onclick="switchGraficos()"> <img src="../../assets/img/caminhao-bau.png"
-                        style="width: 40px; height: 40px;"></button>
-                <div
-                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                    Caminhão 1</div>
-                <div style="align-self: center; background-color: orange;" class="bolinha2"></div>
-            </div>
-            <hr>
-            <div id="mostrarGraficos" class="grafico">
-                <div>
-                    <canvas id="myChart"
-                        style="width: 175%; height: 50%; background-color: rgba(255, 165, 0, 0.25);"></canvas>
-                </div>
+            <br><br>
+            <div class="sobreGrafico">
 
-                <div>
-                    <canvas id="myChart2" style="width: 175%; height: 50%; "></canvas>
-                </div>
             </div>
-        </div>
-        <div class="sobreGrafico">
-            <div class="caixaSituacaoCaminhao">
-                <button id="caminhao2" onclick="switchGraficos1()"> <img src="../../assets/img/caminhao-bau.png"
-                        style="width: 40px; height: 40px;"></button>
-                <div
-                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                    Caminhão 2</div>
-                <div style="align-self: center" class="bolinha2"></div>
-            </div>
-            <hr>
-            <div id="mostrarGraficos1" class="grafico">
-                <div>
-                    <canvas id="myChart3" style="width: 175%; height: 50%;"></canvas>
-                </div>
 
-                <div>
-                    <canvas id="myChart4" style="width: 175%; height: 50%;"></canvas>
-                </div>
-            </div>
+            <br><br><br>
         </div>
-        <div class="sobreGrafico">
-            <div class="caixaSituacaoCaminhao">
-                <button id="caminhao3" onclick="switchGraficos2()"> <img src="../../assets/img/caminhao-bau.png"
-                        style="width: 40px; height: 40px;"></button>
-                <div
-                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                    Caminhão 3</div>
-                <div style="align-self: center; background-color: yellow;" class="bolinha2">
-                </div>
-            </div>
-            <hr>
-            <div id="mostrarGraficos2" class="grafico">
-                <div>
-                    <canvas id="myChart5" style="width: 175%; height: 50%;"></canvas>
-                </div>
-
-                <div>
-                    <canvas id="myChart6"
-                        style="width: 175%; height: 50%; background-color: rgba(255,255, 0, 0.3);"></canvas>
-                </div>
-            </div>
-        </div class="caixaSituacaoCaminhao">
-        <div class="sobreGrafico">
-            <div class="caixaSituacaoCaminhao">
-                <button id="caminhao4" onclick="switchGraficos3()"> <img src="../../assets/img/caminhao-bau.png"
-                        style="width: 40px; height: 40px; border: none; background: none; outline: none; color: transparent;"></button>
-                <div
-                    style="font-size: 18px; display: flex; align-self: center; font-weight: bold; font-family: 'Sora', sans-serif;">
-                    Caminhão 4</div>
-                <div style="align-self: center" class="bolinha2"></div>
-            </div>
-            <hr>
-            <div id="mostrarGraficos3" class="grafico">
-                <div>
-                    <canvas id="myChart7" style="width: 175%; height: 50%;"></canvas>
-                </div>
-
-                <div>
-                    <canvas id="myChart8" style="width: 175%; height: 50%;"></canvas>
-                </div>
-            </div>
-        </div>
-        <br><br><br>
-    </div>
     </div>
 </body>
 

@@ -3,4 +3,8 @@ var router = express.Router();
 
 var caminhaoController = require("../controllers/caminhaoController");
 
+router.post("/cadastrar/:idTransp/:idSensor", function (req, res) {
+    caminhaoController.cadastrar(req, res);
+})
+
 module.exports = router;

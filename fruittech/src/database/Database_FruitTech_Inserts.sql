@@ -121,3 +121,7 @@ on idCaminhao = fkCaminhaoProd join Sensor
 on idCaminhao = fkCaminhaoSens join SensorDados
 on idSensor = fkSensor
 where Caminhao.idCaminhao in ('5', '6');*/
+
+select * from Sensores;
+
+select idSensores from Sensores where codigoSensores = '';
