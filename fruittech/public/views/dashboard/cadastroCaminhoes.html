@@ -89,84 +89,86 @@
 
 <script>
 
-function CadastrarCaminhao(){
-    
-    // aguardar();
+    function CadastrarCaminhao() {
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var marca = input_marcaCaminhao.value;
-    var modelo = input_modeloCaminhao.value;
-    var chassi = input_chassiCaminhao.value;
-    var comprimento = input_comprimentoCaminhao.value;
-    var altura = input_alturaCaminhao.value;
-    var codigoSensor = input_codigoSensor.value
+        // aguardar();
 
-    var idTransportadora = sessionStorage.ID_TRANSPORTADORA
-    if (
-      marca == "" ||
-      modelo == "" ||
-      chassi == "" ||
-      comprimento == "" ||
-      altura == "" ||
-      codigoSensor == "" ||
-      idTransportadora == ""
-    ) {
-    //   cardErro.style.display = "block";
-    //   mensagem_erro.innerHTML =
-    //     "(Mensagem de erro para todos os campos em branco)";
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var marca = input_marcaCaminhao.value;
+        var modelo = input_modeloCaminhao.value;
+        var chassi = input_chassiCaminhao.value;
+        var comprimento = input_comprimentoCaminhao.value;
+        var altura = input_alturaCaminhao.value;
+        var codigoSensor = input_codigoSensor.value
 
-    //   finalizarAguardar();
-    alert('Há algum campo vazio!')
-      return false;
-    } else {
+        var idTransportadora = sessionStorage.ID_TRANSPORTADORA
+        if (
+            marca == "" ||
+            modelo == "" ||
+            chassi == "" ||
+            comprimento == "" ||
+            altura == "" ||
+            codigoSensor == "" ||
+            idTransportadora == ""
+        ) {
+            //   cardErro.style.display = "block";
+            //   mensagem_erro.innerHTML =
+            //     "(Mensagem de erro para todos os campos em branco)";
 
-    // Enviando o valor da nova input
-    fetch(`/caminhao/cadastrar/${idTransportadora}`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        marcaServer : marca,
-        modeloServer : modelo,
-        chassiServer : chassi,
-        comprimentoServer : comprimento,
-        alturaServer : altura,
-        codigoSensorServer : codigoSensor
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+            //   finalizarAguardar();
+            alert('Há algum campo vazio!')
+            return false;
+        } else {
 
-        if (resposta.ok) {
-        //   cardErro.style.display = "block";
+            // Enviando o valor da nova input
+            fetch(`/caminhao/cadastrar/${idTransportadora}`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    marcaServer: marca,
+                    modeloServer: modelo,
+                    chassiServer: chassi,
+                    comprimentoServer: comprimento,
+                    alturaServer: altura,
+                    codigoSensorServer: codigoSensor
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
 
-        //   mensagem_erro.innerHTML =
-        //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-        alert('Cadastro do caminhão realizado com sucesso! Redirecionando para dashboard.')
+                    if (resposta.ok) {
+                        //   cardErro.style.display = "block";
 
-          setTimeout(() => {
-            window.location = "./dashboard.html";
-          }, "2000");
+                        //   mensagem_erro.innerHTML =
+                        //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                        alert('Cadastro do caminhão realizado com sucesso! Redirecionando para dashboard.')
 
-        //   limparFormulario();
-        //   finalizarAguardar();
-        } else{
-            throw "Houve um erro ao tentar realizar o cadastro do caminhão!";
+                        setTimeout(() => {
+                            window.location = "./dashboard.html";
+                        }, "2000");
+
+                        //   limparFormulario();
+                        //   finalizarAguardar();
+                    } else if (resposta.status == 404) {
+                        alert('Código do sensor inválido')
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro do caminhão!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    // finalizarAguardar();
+                });
+
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
-      });
 
-      }
+        return false;
 
-    return false;
- 
 
-}
+    }
 </script>

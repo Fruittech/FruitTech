@@ -148,7 +148,7 @@
                         console.log(JSON.stringify(json));
                         sessionStorage.ID_FUNCIONARIO = json.id;
                         sessionStorage.NOME_FUNCIONARIO = json.nome;
-                        sessionStorage.CAMINHOES_TRANSPORTADORA_FUNCIONARIO = JSON.stringify(json.caminhoes);
+                        sessionStorage.CAMINHOES_TRANSPORTADORA = JSON.stringify(json.caminhoes);
                         
                         setTimeout(function () {
                             window.location = "./dashboard/dashboard.html";
