@@ -566,6 +566,7 @@
     function atualizarGrafico(idAquario, dados, myChart) {
 
 
+        
 
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {

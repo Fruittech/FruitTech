@@ -18,12 +18,12 @@ var sql = require('mssql');
 // }
 
 // CONEXÃO DO MYSQL WORKBENCH - FACULDADE
-var mySqlConfig = {
-    host: "localhost",
-    database: "FruitTech",
-    user: "root",
-    password: "diego7173",
-};
+// var mySqlConfig = {
+//     host: "localhost",
+//     database: "FruitTech",
+//     user: "root",
+//     password: "diego7173",
+// };
 
 // CONEXÃO DO MYSQL WORKBENCH - ISAAC
 // var mySqlConfig = {
@@ -36,10 +36,12 @@ var mySqlConfig = {
 // CONEXÃO DO MYSQL WORKBENCH - LEONARDO
 // var mySqlConfig = {
 //     host: "localhost",
-//     database: "FruitTech",
+//     database: "fruittech",
 //     user: "root",
 //     password: "leo17130202",
 // };
+
+
 
 function executar(instrucao) {
     // VERIFICA A VARIÁVEL DE AMBIENTE SETADA EM app.js
