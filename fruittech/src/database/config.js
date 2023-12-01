@@ -21,8 +21,8 @@ var sql = require('mssql');
 var mySqlConfig = {
     host: "localhost",
     database: "FruitTech",
-    user: "aluno",
-    password: "sptech",
+    user: "root",
+    password: "diego7173",
 };
 
 // CONEXÃO DO MYSQL WORKBENCH - ISAAC
