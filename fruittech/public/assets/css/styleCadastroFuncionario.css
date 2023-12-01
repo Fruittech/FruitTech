@@ -11,6 +11,7 @@ body {
     --cor-destaque: #0E6616;
     --tamanho-base-fonte: 12.5px;
     --bg-cor-input: #E0EBE1;
+    --placeholder-text-color: #77A87B;
 
 } 
 
@@ -110,9 +111,9 @@ body {
     width: 100%;
     height: 100%;
     margin-top: 1%;
-    background-color: #0e661523;
+    background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.322);
-    /* border-radius: 15px; */
+    border-radius: 15px;
 }
 
 .bolinha {
@@ -241,7 +242,7 @@ body {
     /* width: 100px; */
     border: none;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background-color: var(--bg-cor-input);
     font-size: 1.5em;
     padding-left: 10px;
     
@@ -353,3 +354,7 @@ body {
     cursor: pointer;
     overflow: hidden;
   }
+
+  #botaosair{
+    width: 183px;
+}
