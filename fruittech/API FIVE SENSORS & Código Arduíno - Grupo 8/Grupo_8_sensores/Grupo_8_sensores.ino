@@ -21,7 +21,7 @@ void setup() {
 void loop() {
   // DHT 11
   float dht11_umidade = dht.readHumidity();
-  float dht11_temperatura = dht.readTemperature();
+  // float dht11_temperatura = dht.readTemperature();
   Serial.print(dht11_umidade);
   Serial.print(",");
   Serial.print(dht11_temperatura);
