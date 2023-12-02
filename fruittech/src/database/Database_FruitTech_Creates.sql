@@ -53,7 +53,6 @@ create table SensoresDados (
 idSensoresDados int primary key auto_increment,
 temperatura_LM35 double,
 umidade_DHT11 double,
-temperatura_DHT11 double,
 data_hora timestamp default current_timestamp,
 sensoresDados_fkSensores int,
 constraint foreign key (sensoresDados_fkSensores) references Sensores(idSensores)
@@ -63,7 +62,7 @@ create table Caminhao (
 idCaminhao int primary key auto_increment,
 marcaCaminhao varchar(40),
 modeloCaminhao varchar(40),
-chassiCaminhao char(17),
+placaCaminhao char(7),
 comprimentoCaminhao double,
 alturaCaminhao double,
 Caminhao_fkTransportadora int,

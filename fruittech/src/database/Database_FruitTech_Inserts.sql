@@ -41,19 +41,27 @@ describe Caminhao;
     (null, 'da5b8948-423f-4a07-b880-7261c6f985fb');
 
     insert into Caminhao values
-    (null ,'Volkswagem', 'DELIVERY EXPRESS', '2TxbPH5KU69aB6313', '1.91', '2.53', 1, 1),
-    (null, 'Mercedes-Benz', 'MB 2429', '5lrCYgpAAP6U89116', '2.30', '3.53', 1, 2),
-    (null, 'Mercedes-Benz', 'MB 815', '7bjgA9fHbm84P2767', '3.00', '3.00', 2, 3),
-    (null, 'Ford', 'CARGO 2429', '7H9A8GrNUj1AB0517', '4.00', '2.50', 2, 4),
-    (null, 'Volkswagen', 'VW 10160', '2s50dLyRW5l4Y7979', '2.90', '3.50', 3, 5),
-    (null, 'Iveco', 'DAILY 35-150', '4Ac8VT29K4T1K8565', '6.00', '3.00', 3, 6);
+    (null ,'Volkswagem', 'DELIVERY EXPRESS', 'NAY3255', 1.91, 2.53, 1, 1),
+    (null, 'Mercedes-Benz', 'MB 2429', 'HPJ4129', 2.30, 3.53, 1, 2),
+    (null, 'Mercedes-Benz', 'MB 815', 'KAY8402', 3.00, 3.00, 2, 3),
+    (null, 'Ford', 'CARGO 2429', 'NEJ6491', 4.00, 2.50, 2, 4),
+    (null, 'Volkswagen', 'VW 10160', 'MUN8800', 2.90, 3.50, 3, 5),
+    (null, 'Iveco', 'DAILY 35-150', 'MZO2924', 6.00, 3.00, 3, 6);
+    
+	insert into SensoresDados (temperatura_LM35, umidade_DHT11, sensoresDados_fkSensores) values
+	(11.11, 78.81,1),
+	(11.21, 79.12,1),
+	(11.68, 80.07,1),
+	(11.50, 81.01,1);
+    
+	SELECT idCaminhao , marcaCaminhao, temperatura_LM35, umidade_DHT11
+    FROM SensoresDados
+    JOIN caminhao
+    ON caminhao_fkSensores = sensoresdados_fkSensores
+	WHERE idCaminhao = 1;
 
-/* insert into SensoresDados values
-(null, 1, '82.00', '11.00'),
-(null, 1, '83.00', '11.00'),
-(null, 2, '83.00', '12.00'),
-(null, 2, '85.00', '12.00');
-*/
+
+
 
 /*
 -- CONSULTAS
@@ -121,7 +129,3 @@ on idCaminhao = fkCaminhaoProd join Sensor
 on idCaminhao = fkCaminhaoSens join SensorDados
 on idSensor = fkSensor
 where Caminhao.idCaminhao in ('5', '6');*/
-
-select * from Sensores;
-
-select idSensores from Sensores where codigoSensores = '';
