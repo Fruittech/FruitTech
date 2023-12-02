@@ -12,6 +12,19 @@ body {
     flex-direction: row;
 }
 
+#name_session{
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+ }
+
+ #name_{
+   color: #0e6616;
+   font-weight: 700;
+ }
+
 .navbar {
     font-family: 'Sora', sans-serif;
     display: flex;

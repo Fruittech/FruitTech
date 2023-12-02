@@ -11,7 +11,7 @@ function validarSessao() {
     if (idFunc != null && nomeFunc != null) {
         nameSession.innerHTML =  `Bem vindo! ${nomeFunc}`
     } else if (idTransp != null && nomeTransp != null) {
-        nameSession.innerHTML = `Bem vindo! ${nomeTransp}`;
+        nameSession.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeTransp}</span></div>`;;
     } else {
         window.location = "../index.html";
     }
