@@ -50,8 +50,8 @@
                                     <div class="flex--bases">
                                         <input type="text" id="input_modeloCaminhao" class="input--bases"
                                             placeholder="Modelo...">
-                                        <input type="text" id="input_chassiCaminhao" class="input--bases"
-                                            placeholder="Chassi..." maxlength="17">
+                                        <input type="text" id="input_placaCaminhao" class="input--bases"
+                                            placeholder="Placa..." maxlength="7">
                                     </div>
                                     <div class="flex--bases">
                                         <input type="number" id="input_comprimentoCaminhao" class="input--bases"
@@ -96,7 +96,7 @@
         // Agora vá para o método fetch logo abaixo
         var marca = input_marcaCaminhao.value;
         var modelo = input_modeloCaminhao.value;
-        var chassi = input_chassiCaminhao.value;
+        var placa = input_placaCaminhao.value;
         var comprimento = input_comprimentoCaminhao.value;
         var altura = input_alturaCaminhao.value;
         var codigoSensor = input_codigoSensor.value
@@ -105,7 +105,7 @@
         if (
             marca == "" ||
             modelo == "" ||
-            chassi == "" ||
+            placa == "" ||
             comprimento == "" ||
             altura == "" ||
             codigoSensor == "" ||
@@ -131,7 +131,7 @@
                     // Agora vá para o arquivo routes/usuario.js
                     marcaServer: marca,
                     modeloServer: modelo,
-                    chassiServer: chassi,
+                    placaServer: placa,
                     comprimentoServer: comprimento,
                     alturaServer: altura,
                     codigoSensorServer: codigoSensor

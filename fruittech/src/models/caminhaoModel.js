@@ -6,9 +6,9 @@ function buscarCaminhoesPorTransportadora(idTransportadora) {
   return database.executar(query);
 }
 
-function cadastrar(marca, modelo, chassi, comprimento, altura, fkTransp, fkSensor) {
+function cadastrar(marca, modelo, placa, comprimento, altura, fkTransp, fkSensor) {
   var query = `INSERT INTO Caminhao VALUES
-  (null ,'${marca}', '${modelo}', '${chassi}', ${comprimento}, ${altura}, ${fkTransp}, ${fkSensor});`;
+  (null ,'${marca}', '${modelo}', '${placa}', ${comprimento}, ${altura}, ${fkTransp}, ${fkSensor});`;
 
   return database.executar(query);
 }

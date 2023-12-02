@@ -9,9 +9,13 @@ function validarSessao() {
     var nameSession = document.getElementById("name_session");
 
     if (idFunc != null && nomeFunc != null) {
-        nameSession.innerHTML =  `Bem vindo! ${nomeFunc}`
+
+        nameSession.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeFunc}</span></div>`;
+
     } else if (idTransp != null && nomeTransp != null) {
-        nameSession.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeTransp}</span></div>`;;
+
+        nameSession.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeTransp}</span></div>`;
+        
     } else {
         window.location = "../index.html";
     }

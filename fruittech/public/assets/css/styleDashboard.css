@@ -290,10 +290,7 @@ body {
   }
   
   .dash {
-    width: 80%;
     position: relative;
-    top: 0;
-    left: 20%;
     background-color: #161618;
     height: 100vh;
     overflow: auto;

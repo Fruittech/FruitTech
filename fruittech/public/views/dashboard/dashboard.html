@@ -52,10 +52,19 @@
             <br><br>
 
 
-            <div class="sobreGrafico" id="cadaCaminhao">
-               
-                
+            <div class="dash">
+                <div id="alerta">
+                </div>
+    
+                <div class="btns-dash" id="btnCaminhao">
+                    <!-- O gráfico é chamado de acordo com o id do caminhão (idCaminhao) do banco  -->
+                </div>
+                <div id="graficos">
+                </div>
             </div>
+        </div>
+
+            
         </div>
 </body>
 
@@ -65,147 +74,7 @@
 </html>
 
 <script>
-    // const labels = [
-    //     '12:00',
-    //     '13:00',
-    //     '14:00',
-    //     '15:00',
-    //     '16:00',
-    //     '17:00',
-    // ];
-
-    // const labels2 = [
-    //     '12:00',
-    //     '13:00',
-    //     '14:00',
-    //     '15:00',
-    //     '16:00',
-    //     '17:00',
-    // ];
-
-    // const config = {
-    //     type: 'line',
-    //     data: {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'TEMPERATURA (DHT11)',
-    //             backgroundColor: '#E9D208',
-    //             borderColor: '#E9D208',
-    //             data: [9.5, 9, 10, 10, 9.5, 9],
-    //         },
-    //         {
-    //             label: 'TEMPERATURA (LM35)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [9.5, 9, 9.5, 10, 9, 9],
-
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
-    // const config2 = {
-    //     type: 'bar',
-    //     data: {
-    //         labels: labels2,
-    //         datasets: [{
-    //             label: 'UMIDADE (DHT11)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [75, 77, 78, 76, 76, 79],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
-    // const config3 = {
-    //     type: 'line',
-    //     data: {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'TEMPERATURA (DHT11)',
-    //             backgroundColor: '#E9D208',
-    //             borderColor: '#E9D208',
-    //             data: [12, 10, 9.5, 10, 10.5, 11],
-    //         },
-    //         {
-    //             label: 'TEMPERATURA (LM35)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [11, 10, 10, 10.5, 10.5, 11],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
-    // const config4 = {
-    //     type: 'bar',
-    //     data: {
-    //         labels: labels2,
-    //         datasets: [{
-    //             label: 'UMIDADE (DHT11)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [79, 81, 80, 77, 76, 73],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
-    // const config5 = {
-    //     type: 'line',
-    //     data: {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'TEMPERATURA (DHT11)',
-    //             backgroundColor: '#E9D208',
-    //             borderColor: '#E9D208',
-    //             data: [9, 11, 10, 12, 10, 8],
-    //         },
-    //         {
-    //             label: 'TEMPERATURA (LM35)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [10, 11, 10, 11, 10, 9],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
-    // const config6 = {
-    //     type: 'bar',
-    //     data: {
-    //         labels: labels2,
-    //         datasets: [{
-    //             label: 'UMIDADE (DHT11)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [59, 60, 59, 61, 62, 63],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
-    // const config7 = {
-    //     type: 'line',
-    //     data: {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'TEMPERATURA (DHT11)',
-    //             backgroundColor: '#E9D208',
-    //             borderColor: '#E9D208',
-    //             data: [8, 10, 11, 10, 12, 10],
-    //         },
-    //         {
-    //             label: 'TEMPERATURA (LM35)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [9, 10, 11, 10, 11, 10],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
-
+   
     // const config8 = {
     //     type: 'bar',
     //     data: {
@@ -311,40 +180,19 @@
 
         caminhoes.forEach((item) => {
             
-            document.getElementById("cadaCaminhao").innerHTML += `
+            document.getElementById("btnCaminhao").innerHTML += `
 
             <div class="caixaSituacaoCaminhao" id="caixaSituacaoCaminhao" style="width: 100%;">
-                    <button id="btnCaminhao" onclick="switchGraficos()"> <img src="../../assets/img/caminhao-bau.png"
+                    <button class="btn-chart" id="btnCaminhao" onclick="exibirCaminhao(${item.idCaminhao}), switchGraficos()"> <img src="../../assets/img/caminhao-bau.png"
                             style="width: 40px; height: 40px; font-size: 18px; font-weight: bold;">
 
-                            <button class="btn-chart" onclick="exibirCaminhao(${item.idCaminhao})" id="btnCaminhao${item.idCaminhao}">MARCA: ${item.marcaCaminhao} <br> MODELO: ${item.modeloCaminhao} <br> PLACA: ${item.placaCaminhao} </button>
+                            MARCA: ${item.marcaCaminhao}  MODELO: ${item.modeloCaminhao}  PLACA: ${item.placaCaminhao}
                         
                         </button>
                     <!-- <div style="align-self: center; background-color: orange;" class="bolinha2"></div> -->
                 </div>
                 <hr>
-                <div id="mostrarGraficos" class="grafico">
-                    <div class="dash">
-                        <div id="alerta">
-                        </div>
-
-                        <div class="btns-dash" id="btnCaminhao">
-                            <!-- O gráfico é chamado de acordo com o id (fk_caminhão) do banco  -->
-                        </div>
-                        <div id="graficos">
-
-                        </div>
-                    </div>
-                    <div>
-                        <!-- <canvas id="myChart"
-                            style="width: 175%; height: 50%; background-color: rgba(255, 165, 0, 0.25);"></canvas>
-                    </div>
-
-                    <div>
-                        <canvas id="myChart2" style="width: 175%; height: 50%; "></canvas>
-                    </div> -->
-                    </div>
-                </div>
+                
         `
 
             document.getElementById("graficos").innerHTML += `
@@ -361,21 +209,21 @@
             </div>
         `
 
-            // obterDadosGrafico(item.idCaminhao)
+            obterDadosGrafico(item.idCaminhao)
 
             });
 
 
-        if (caminhoes.length > 0) {
-            exibirCaminhoes(caminhoes[0].idCaminhao)
-        }
+        // if (caminhoes.length > 0) {
+        //     exibirCaminhoes(caminhoes[0].idCaminhao)
+        // }
     }
 
-    // function alterarTitulo(idCaminhao) {
-    //     var tituloCaminhao = document.getElementById(`tituloCaminhao${idCaminhao}`)
-    //     var descricao = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA).find(item => item.idCaminhao == idCaminhao).chassiCaminhao;
-    //     tituloCaminhao.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + chassiCaminhao + "</span>"
-    // }
+    function alterarTitulo(idCaminhao) {
+        var tituloCaminhao = document.getElementById(`tituloCaminhao${idCaminhao}`)
+        var descricao = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA).find(item => item.idCaminhao == idCaminhao).placaCaminhao;
+        tituloCaminhao.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+    }
 
     // function exibirCaminhoes(idCaminhao) {
     //     let todosOsGraficos = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA);
@@ -390,7 +238,7 @@
     //             elementoAtual.classList.add("display-none")
 
     //             // alterando estilo do botão
-    //             let btnAtual = document.getElementById(`btnCaminhao${todosOsGraficos[i].id}`)
+    //             let btnAtual = document.getElementById(`btnCaminhao${todosOsGraficos[i].idCaminhao}`)
     //             if (btnAtual.classList.contains("btn-pink")) {
     //                 btnAtual.classList.remove("btn-pink")
     //             }
@@ -420,95 +268,110 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    // function obterDadosGrafico(idCaminhao) {
+    function obterDadosGrafico(idCaminhao) {
 
-    //     alterarTitulo(idCaminhao)
+        alterarTitulo(idCaminhao)
 
-    //     if (proximaAtualizacao != undefined) {
-    //         clearTimeout(proximaAtualizacao);
-    //     }
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
 
-    //     fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
+        fetch(`/sensorDados/ultimas/${idCaminhao}`, { cache: 'no-store' })
+        
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
-    //                 plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta, idCaminhao);
 
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    // function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico(resposta, idCaminhao) {
 
-    //     console.log('iniciando plotagem do gráfico...');
+        console.log('iniciando plotagem do gráfico...');
 
-    //     // Criando estrutura para plotar gráfico - labels
-    //     let labels = [];
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
 
-    //     // Criando estrutura para plotar gráfico - dados
-    //     let dados = {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'Umidade',
-    //             data: [],
-    //             fill: false,
-    //             borderColor: 'rgb(75, 192, 192)',
-    //             tension: 0.1
-    //         },
-    //         {
-    //             label: 'Temperatura',
-    //             data: [],
-    //             fill: false,
-    //             borderColor: 'rgb(199, 52, 52)',
-    //             tension: 0.1
-    //         }]
-    //     };
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Umidade',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            {
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(199, 52, 52)',
+                tension: 0.1
+            },
+        
+        ]
+        
+            
+        };
 
-    //     console.log('----------------------------------------------')
-    //     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    //     console.log(resposta)
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
 
-    //     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    //     for (i = 0; i < resposta.length; i++) {
-    //         var registro = resposta[i];
-    //         labels.push(registro.momento_grafico);
-    //         dados.datasets[0].data.push(registro.umidade);
-    //         dados.datasets[1].data.push(registro.temperatura);
-    //     }
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.data_hora);
+            dados.datasets[0].data.push(registro.umidade_DHT11);
+            dados.datasets[1].data.push(registro. temperatura_LM35);
+        }
 
-    //     console.log('----------------------------------------------')
-    //     console.log('O gráfico será plotado com os respectivos valores:')
-    //     console.log('Labels:')
-    //     console.log(labels)
-    //     console.log('Dados:')
-    //     console.log(dados.datasets)
-    //     console.log('----------------------------------------------')
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
 
-    //     // Criando estrutura para plotar gráfico - config
-    //     const config = {
-    //         type: 'line',
-    //         data: dados,
-    //     };
+        // Criando estrutura para plotar gráfico - config
 
-    //     // Adicionando gráfico criado em div na tela
-    //     let myChart = new Chart(
-    //         document.getElementById(`myChartCanvas${idAquario}`),
-    //         config
-    //     );
+        // Adicionando gráfico criado em div na tela
+        const grafico = document.getElementById(`myChartCanvas${idCaminhao}`)
 
-    //     setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    // }
+        new Chart(grafico, {
+            type: 'line',
+            data: dados,
+
+
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
 
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,

@@ -5,7 +5,7 @@ function cadastrar(req, res) {
     var idTransp = req.params.idTransp
     var marca = req.body.marcaServer
     var modelo = req.body.modeloServer
-    var chassi = req.body.chassiServer
+    var placa = req.body.placaServer
     var comprimento = req.body.comprimentoServer
     var altura = req.body.alturaServer
     var codigoSensor = req.body.codigoSensorServer
@@ -14,8 +14,8 @@ function cadastrar(req, res) {
       res.status(400).sendd("A marca do caminhão está 'undefined'!");
     } else if (modelo == undefined) {
       res.status(400).send("O modelo do caminhão está 'undefined'!");
-    } else if (chassi == undefined) {
-      res.status(400).send("O chassi do caminhão está 'undefined'!");
+    } else if (placa == undefined) {
+      res.status(400).send("A placa do caminhão está 'undefined'!");
     } else if (comprimento == undefined) { 
       res.status(400).send("O modelo do caminhão está 'undefined'!");
     } else if (altura == undefined){
@@ -35,7 +35,7 @@ function cadastrar(req, res) {
           if (resultadoAutenticarSensor.length == 1) {
 
 
-            CaminhaoModel.cadastrar(marca, modelo, chassi, comprimento, altura, idTransp, resultadoAutenticarSensor[0].idSensores)
+            CaminhaoModel.cadastrar(marca, modelo, placa, comprimento, altura, idTransp, resultadoAutenticarSensor[0].idSensores)
             .then(function (resultado) {
               res.json(resultado);
             })
