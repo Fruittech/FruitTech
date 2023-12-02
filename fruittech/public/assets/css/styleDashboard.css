@@ -173,6 +173,7 @@ body {
 }
 
 .caixaSituacaoCaminhao {
+  background-color: #0e6616;
     display: flex;
     align-content: center;
     width: 20%;
@@ -291,7 +292,6 @@ body {
   
   .dash {
     position: relative;
-    background-color: #161618;
     height: 100vh;
     overflow: auto;
   }
@@ -390,28 +390,33 @@ body {
     justify-content: center;
     margin-top: 30px;
     flex-wrap: wrap;
-    padding: 0 30% 0 30%
+    /* padding: 0 30% 0 30% */
   }
   
   .graph {
-    width: 80%;
+    width: 100%;
     margin: auto;
     padding-top: 10px;
   }
   
   .tituloGraficos {
+    background-color: beige;
     color: rgb(216, 216, 216);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 70px;
   }
   
   .btn-chart {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
     font-family: "Exo 2", sans-serif;
     border: 0;
     font-weight: 600;
     font-size: 18px;
-    padding: 10px 15px;
-    color: #e6005a;
+    padding: 10px 65px;
+    color: #0e6616;
     background-color: white;
     margin: 5px;
     border-radius: 3px;

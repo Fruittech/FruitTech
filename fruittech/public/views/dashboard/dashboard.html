@@ -16,7 +16,7 @@
     <div class="container">
         <div class="navbar">
             <div class="main__logo">
-                <img src="../../assets/img/logo2.png" alt="">
+                <img src="../../assets/ico/logo-fruittech.svg" alt="">
             </div>
             <div id="name_session">
 
@@ -59,8 +59,8 @@
                 <div class="btns-dash" id="btnCaminhao">
                     <!-- O gráfico é chamado de acordo com o id do caminhão (idCaminhao) do banco  -->
                 </div>
-                <div id="graficos">
-                </div>
+                    <!-- <div id="graficos">
+                    </div> -->
             </div>
         </div>
 
@@ -182,23 +182,19 @@
             
             document.getElementById("btnCaminhao").innerHTML += `
 
-            <div class="caixaSituacaoCaminhao" id="caixaSituacaoCaminhao" style="width: 100%;">
-                    <button class="btn-chart" id="btnCaminhao" onclick="exibirCaminhao(${item.idCaminhao}), switchGraficos()"> <img src="../../assets/img/caminhao-bau.png"
-                            style="width: 40px; height: 40px; font-size: 18px; font-weight: bold;">
+            <div class="caixaSituacaoCaminhao" id="caixaSituacaoCaminhao" style="width: 100%; justify-content: flex-start;">
+                    <button class="btn-chart" id="btnCaminhao" onclick="exibirCaminhao(${item.idCaminhao}), switchGraficos()"> <img src="../../assets/img/caminhao-de-entrega.png"
+                            style="width: 40px; height: 40px; font-size: 18px; font-weight: bold; text-decoration: underline;">
 
-                            MARCA: ${item.marcaCaminhao}  MODELO: ${item.modeloCaminhao}  PLACA: ${item.placaCaminhao}
+                            Marca: ${item.marcaCaminhao}  Modelo: ${item.modeloCaminhao} - PLACA: ${item.placaCaminhao}
                         
                         </button>
                     <!-- <div style="align-self: center; background-color: orange;" class="bolinha2"></div> -->
                 </div>
-                <hr>
-                
-        `
 
-            document.getElementById("graficos").innerHTML += `
-            <div id="grafico${item.idCaminhao}" class="display-none">
+                <div id="grafico${item.idCaminhao}" style="width: 100%;">
                 <h3 class="tituloGraficos">
-                    <span id="tituloCaminhao${item.idCaminhao}">${item.chassiCaminhao}</span>
+                    <span id="tituloCaminhao${item.idCaminhao}" style="color: #c0af17a9;">${item.chassiCaminhao}</span>
                 </h3>
                 <div class="graph">
                     <canvas id="myChartCanvas${item.idCaminhao}"></canvas>
@@ -207,7 +203,12 @@
                     <p id="avisoCaptura${item.idCaminhao}" style="color: white"></p>
                 </div>
             </div>
+                
         `
+
+        //     document.getElementById("graficos").innerHTML += `
+            
+        // `
 
             obterDadosGrafico(item.idCaminhao)
 
@@ -222,7 +223,7 @@
     function alterarTitulo(idCaminhao) {
         var tituloCaminhao = document.getElementById(`tituloCaminhao${idCaminhao}`)
         var descricao = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA).find(item => item.idCaminhao == idCaminhao).placaCaminhao;
-        tituloCaminhao.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+        tituloCaminhao.innerHTML = "Últimas medidas de Temperatura e Umidade: <span style='color: #0e6616;'>" + descricao + "</span>"
     }
 
     // function exibirCaminhoes(idCaminhao) {
