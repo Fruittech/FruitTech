@@ -11,16 +11,16 @@
     <title>Dashboard FruitTech</title>
 </head>
 
-<body onload="validarSessao()">
+<body>
 
     <div class="container">
         <div class="navbar">
             <div class="main__logo">
                 <img src="../../assets/ico/logo-fruittech.svg" alt="">
             </div>
+            
             <div id="name_session">
-
-            </div>
+        </div>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="cadastroCaminhoes.html">Cadastro Caminhões</a></li>
@@ -168,6 +168,7 @@
 
 </script>
 <script>
+    window.onload=validarSessao()
 
     let proximaAtualizacao;
 
@@ -436,5 +437,10 @@
     //         });
 
     // }
+
+
+
+
+
 
 </script>
