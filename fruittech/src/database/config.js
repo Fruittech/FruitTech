@@ -30,8 +30,16 @@ var mySqlConfig = {
     host: "localhost",
     database: "FruitTech",
     user: "root",
-    password: "#Gf52273189800",
+    password: "159357",
 };
+
+// CONEXÃO DO MYSQL WORKBENCH - VOLPE
+// var mySqlConfig = {
+//     host: "localhost",
+//     database: "FruitTech",
+//     user: "root",
+//     password: "#Gf52273189800",
+// };
 
 // CONEXÃO DO MYSQL WORKBENCH - LEONARDO
 // var mySqlConfig = {

@@ -6,15 +6,15 @@ function validarSessao() {
     var idTransp = sessionStorage.ID_TRANSPORTADORA;
     var nomeTransp = sessionStorage.NOME_TRANSPORTADORA;
 
-    var nameSession = document.getElementById("name_session");
+    const session = document.getElementById("session")
 
     if (idFunc != null && nomeFunc != null) {
 
-        nameSession.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeFunc}</span></div>`;
+        session.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeFunc}</span></div>`;
 
     } else if (idTransp != null && nomeTransp != null) {
 
-        nameSession.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeTransp}</span></div>`;
+        session.innerHTML = `<div style=" text-align: center;">Bem vindo! <span id="name_"> ${nomeTransp}</span></div>`;
         
     } else {
         window.location = "../index.html";
