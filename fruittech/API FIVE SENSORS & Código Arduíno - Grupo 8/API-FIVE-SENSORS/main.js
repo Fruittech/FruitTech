@@ -63,6 +63,11 @@ const serial = async (
                 'INSERT INTO SensoresDados (temperatura_LM35, umidade_DHT11, sensoresDados_fkSensores) VALUES (?, ?, ?, 1)',
                 [lm35Temperatura,dht11Umidade ]
             );
+
+            await poolBancoDados.execute(
+                'INSERT INTO SensoresDados (temperatura_LM35, umidade_DHT11, sensoresDados_fkSensores) VALUES (?, ?, ?, 2)',
+                [lm35Temperatura + 15,dht11Umidade - 40 ]
+            );
         }
 
     });

@@ -23,8 +23,8 @@
             </div>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="cadastroCaminhoes.html">Cadastro Caminhões</a></li>
-                <li><a href="Cadastro-Funcionario.html">Cadastro Funcionarios</a></li>
+                <li><a id="btnCadastroCaminhao" href="cadastroCaminhoes.html">Cadastro Caminhões</a></li>
+                <li><a id="btnCadastroFuncionario" href="Cadastro-Funcionario.html">Cadastro Funcionarios</a></li>
                 <li><a id="botaosair" onclick="limparSessao()" class="logoff">Sair</a></li>
             </ul>
         </div>
@@ -36,7 +36,7 @@
                     <div style="display: flex; flex-direction: row;">
                         <div class="situacaoCaminhoes" style="width: 25%; height: 100%;">
                             <ul style="list-style: none;    ">
-                                <li><button id="esconderMostrar" onclick="esconderGraficos()">Esconder Gráficos</button>
+                                <li><button id="esconderMostrar" onclick="mostrarTudo()">Esconder Gráficos</button>
                                 </li>
                                 <li><button id="mostrarAlertas" onclick="mostrarAlerts()">Mostrar Alertas</button>
                                 </li>
@@ -55,17 +55,17 @@
             <div class="dash">
                 <div id="alerta">
                 </div>
-    
+
                 <div class="btns-dash" id="btnCaminhao">
                     <!-- O gráfico é chamado de acordo com o id do caminhão (idCaminhao) do banco  -->
                 </div>
-                    <!-- <div id="graficos">
+                <!-- <div id="graficos">
                     </div> -->
             </div>
         </div>
 
-            
-        </div>
+
+    </div>
 </body>
 
 
@@ -74,116 +74,198 @@
 </html>
 
 <script>
-    // const config8 = {
-    //     type: 'bar',
-    //     data: {
-    //         labels: labels2,
-    //         datasets: [{
-    //             label: 'UMIDADE (DHT11)',
-    //             backgroundColor: '#0E6616',
-    //             borderColor: '#0E6616',
-    //             data: [72, 71, 73, 75, 71, 68],
-    //         }]
-    //     },
-    //     options: { maintainAspectRatio: false }
-    // };
+    var alertas = [];
 
+    function obterdados(idCaminhao) {
+        fetch(`/sensorDados/tempo-real/${idCaminhao}`)
+            .then(resposta => {
+                if (resposta.status == 200) {
+                    resposta.json().then(resposta => {
 
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
+                        alertar(resposta, idCaminhao);
+                    });
+                } else {
+                    console.error(`Nenhum dado encontrado para o id ${idCaminhao} ou erro na API`);
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
 
-// Script para fazer aparecer os gráficos
+    }
 
-    // var interruptor = 1;
-    // var interruptor1 = 1;
-    // var interruptor2 = 1;
-    // var interruptor3 = 1;
-    // var esconderMostrarGraficos = 0;
+    function alertar(resposta, idCaminhao) {
+        var temp = resposta[0].temperatura_LM35;
 
+        var grauDeAviso = '';
 
-    // function switchGraficos() {
-    //     interruptor++;
+        var limites = {
+            muito_quente: 15,
+            quente: 13,
+            ideal: 12,
+            frio: 10,
+            muito_frio: 8
+        };
 
-    //     if (interruptor == 1) {
-    //         mostrarGraficos.style.display = 'flex';
-    //     } else {
-    //         mostrarGraficos.style.display = 'none';
-    //         interruptor = 0;
-    //     }
+        var classe_temperatura = 'cor-alerta';
 
-    // }
-
-    // function switchGraficos1() {
-    //     interruptor1++;
-
-    //     if (interruptor1 == 1) {
-    //         mostrarGraficos1.style.display = 'flex';
-    //     } else {
-    //         mostrarGraficos1.style.display = 'none';
-    //         interruptor1 = 0;
-    //     }
-
-    // }
-
-    // function switchGraficos2() {
-    //     interruptor2++;
-
-    //     if (interruptor2 == 1) {
-    //         mostrarGraficos2.style.display = 'flex';
-    //     } else {
-    //         mostrarGraficos2.style.display = 'none';
-    //         interruptor2 = 0;
-    //     }
-
-    // }
-
-    // function switchGraficos3() {
-    //     interruptor3++;
-
-    //     if (interruptor3 == 1) {
-    //         mostrarGraficos3.style.display = 'flex';
-    //     } else {
-    //         mostrarGraficos3.style.display = 'none';
-    //         interruptor3 = 0;
-    //     }
-
-    // }
-
-    function esconderGraficos() {
-
-        esconderMostrarGraficos++;
-
-        if (esconderMostrarGraficos == 1) {
-            esconderMostrar.innerHTML = `Mostrar Gráficos`
-        } else {
-            esconderMostrar.innerHTML = `Esconder Gráficos`
-            esconderMostrarGraficos = 0
+        if (temp >= limites.muito_quente) {
+            classe_temperatura = 'cor-alerta perigo-quente';
+            grauDeAviso = 'perigo quente'
+            grauDeAvisoCor = 'cor-alerta perigo-quente'
+            exibirAlerta(temp, idCaminhao, grauDeAviso, grauDeAvisoCor)
+        }
+        else if (temp < limites.muito_quente && temp >= limites.quente) {
+            classe_temperatura = 'cor-alerta alerta-quente';
+            grauDeAviso = 'alerta quente'
+            grauDeAvisoCor = 'cor-alerta alerta-quente'
+            exibirAlerta(temp, idCaminhao, grauDeAviso, grauDeAvisoCor)
+        }
+        else if (temp < limites.quente && temp > limites.frio) {
+            classe_temperatura = 'cor-alerta ideal';
+            removerAlerta(idCaminhao);
+        }
+        else if (temp <= limites.frio && temp > limites.muito_frio) {
+            classe_temperatura = 'cor-alerta alerta-frio';
+            grauDeAviso = 'alerta frio'
+            grauDeAvisoCor = 'cor-alerta alerta-frio'
+            exibirAlerta(temp, idCaminhao, grauDeAviso, grauDeAvisoCor)
+        }
+        else if (temp <= limites.muito_frio) {
+            classe_temperatura = 'cor-alerta perigo-frio';
+            grauDeAviso = 'perigo frio'
+            grauDeAvisoCor = 'cor-alerta perigo-frio'
+            exibirAlerta(temp, idCaminhao, grauDeAviso, grauDeAvisoCor)
         }
 
-        // switchGraficos();
-        // switchGraficos1();
-        // switchGraficos2();
-        // switchGraficos3();
+        var card;
+
+        if (document.getElementById(`temp_aquario_${idCaminhao}`) != null) {
+            document.getElementById(`temp_aquario_${idCaminhao}`).innerHTML = temp + "°C";
+        }
+
+        if (document.getElementById(`card_${idCaminhao}`)) {
+            card = document.getElementById(`card_${idCaminhao}`)
+            card.className = classe_temperatura;
+        }
+    }
+
+    function exibirAlerta(temp, idCaminhao, grauDeAviso, grauDeAvisoCor) {
+        var indice = alertas.findIndex(item => item.idCaminhao == idCaminhao);
+
+        if (indice >= 0) {
+            alertas[indice] = { idCaminhao, temp, grauDeAviso, grauDeAvisoCor }
+        } else {
+            alertas.push({ idCaminhao, temp, grauDeAviso, grauDeAvisoCor });
+        }
+
+        exibirCards();
+    }
+
+    function removerAlerta(idCaminhao) {
+        alertas = alertas.filter(item => item.idCaminhao != idCaminhao);
+        exibirCards();
+    }
+
+    function exibirCards() {
+        alerta.innerHTML = '';
+
+        for (var i = 0; i < alertas.length; i++) {
+            var mensagem = alertas[i];
+            alerta.innerHTML += transformarEmDiv(mensagem);
+        }
+    }
+
+    function transformarEmDiv({ idCaminhao, temp, grauDeAviso, grauDeAvisoCor }) {
+
+        var descricao = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA).find(item => item.idCaminhao == idCaminhao).chassiCaminhao;
+        return `
+    <div class="mensagem-alarme">
+        <div class="informacao">
+            <div class="${grauDeAvisoCor}">&#12644;</div> 
+            <h3>${descricao} está em estado de ${grauDeAviso}!</h3>
+            <small>Temperatura ${temp}.</small>   
+        </div>
+        <div class="alarme-sino"></div>
+    </div>
+    `;
+    }
+
+    function atualizacaoPeriodica() {
+        JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA).forEach(item => {
+            obterdados(item.idCaminhao)
+        });
+        setTimeout(atualizacaoPeriodica, 5000);
     }
 
 </script>
 <script>
-    window.onload=validarSessao()
+
+    function btnFuncionario() {
+        var idFunc = sessionStorage.ID_FUNCIONARIO;
+        var nomeFunc = sessionStorage.NOME_FUNCIONARIO;
+
+        if (idFunc != null && nomeFunc != null) {
+
+            cadastroFunc = document.getElementById('btnCadastroFuncionario');
+            cadastroCaminhao = document.getElementById('btnCadastroCaminhao');
+
+            cadastroFunc.style.display = 'none'
+            cadastroCaminhao.style.display = 'none'
+
+        }
+
+    }
+
+    var switchTodosGraficos = [];
+
+    function mostrarTudo() {
+
+
+        var caminhoes = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA);
+
+        caminhoes.forEach((item) => {
+
+            var contador = -1;
+            contador++;
+            var graficoId = 'grafico' + item.idCaminhao;
+            var switchCaminhao = document.getElementById(graficoId);
+
+            if (switchTodosGraficos.length == contador) {
+                switchTodosGraficos.push(true)
+            }
+
+            if (switchTodosGraficos[item.idCaminhao]) {
+                switchCaminhao.style.display = 'none'
+                switchTodosGraficos[item.idCaminhao] = false;
+            } else {
+                switchCaminhao.style.display = 'block'
+                switchTodosGraficos[item.idCaminhao] = true;
+            }
+
+        })
+
+    }
+
+    window.onload = validarSessao()
 
     let proximaAtualizacao;
 
     window.onload = exibirCaminhoesDoUsuario();
 
     function exibirCaminhoesDoUsuario() {
-        
+
         var caminhoes = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA);
         console.log(`Caminhões encontrados: ${JSON.stringify(caminhoes)}`)
 
         caminhoes.forEach((item) => {
-            
+
             document.getElementById("btnCaminhao").innerHTML += `
 
             <div class="caixaSituacaoCaminhao" id="caixaSituacaoCaminhao" style="width: 100%;">
-                    <button class="btn-chart" id="btnCaminhao" onclick="exibirCaminhao(${item.idCaminhao}), switchGraficos()"> <img src="../../assets/img/caminhao-de-entrega.png"
+                    <button class="btn-chart" id="btnCaminhao" onclick="exibirCaminhao(${item.idCaminhao})"> <img src="../../assets/img/caminhao-de-entrega.png"
                             style="width: 40px; height: 40px; font-size: 18px; font-weight: bold; text-decoration: underline;">
 
                             Marca: ${item.marcaCaminhao}  Modelo: ${item.modeloCaminhao} - PLACA: ${item.placaCaminhao}
@@ -206,13 +288,13 @@
                 
         `
 
-        //     document.getElementById("graficos").innerHTML += `
-            
-        // `
+            //     document.getElementById("graficos").innerHTML += `
+
+            // `
 
             obterDadosGrafico(item.idCaminhao)
 
-            });
+        });
 
 
         // if (caminhoes.length > 0) {
@@ -224,6 +306,28 @@
         var tituloCaminhao = document.getElementById(`tituloCaminhao${idCaminhao}`)
         var descricao = JSON.parse(sessionStorage.CAMINHOES_TRANSPORTADORA).find(item => item.idCaminhao == idCaminhao).placaCaminhao;
         tituloCaminhao.innerHTML = "Últimas medidas de Temperatura e Umidade: <span style='color: #0e6616;'>" + descricao + "</span>"
+    }
+
+    listaMostrarCaminhoes = []
+
+    function exibirCaminhao(idCaminhao) {
+
+        var graficoId = 'grafico' + idCaminhao;
+        var switchCaminhao = document.getElementById(graficoId);
+
+        if (listaMostrarCaminhoes[graficoId] == undefined) {
+            listaMostrarCaminhoes[graficoId] = 1;
+            switchCaminhao.style.display = 'none'
+        }
+
+        if (listaMostrarCaminhoes[graficoId] == 1) {
+            listaMostrarCaminhoes[graficoId] = 0;
+            switchCaminhao.style.display = 'none'
+        } else {
+            listaMostrarCaminhoes[graficoId] = 1;
+            switchCaminhao.style.display = 'block'
+        }
+
     }
 
     // function exibirCaminhoes(idCaminhao) {
@@ -278,20 +382,20 @@
         }
 
         fetch(`/sensorDados/ultimas/${idCaminhao}`, { cache: 'no-store' })
-        
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
-                    plotarGrafico(resposta, idCaminhao);
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        resposta.reverse();
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+                        plotarGrafico(resposta, idCaminhao);
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -324,10 +428,10 @@
                 borderColor: 'rgb(199, 52, 52)',
                 tension: 0.1
             },
-        
-        ]
-        
-            
+
+            ]
+
+
         };
 
         console.log('----------------------------------------------')
@@ -339,7 +443,7 @@
             var registro = resposta[i];
             labels.push(registro.data_hora);
             dados.datasets[0].data.push(registro.umidade_DHT11);
-            dados.datasets[1].data.push(registro. temperatura_LM35);
+            dados.datasets[1].data.push(registro.temperatura_LM35);
         }
 
         console.log('----------------------------------------------')
@@ -355,7 +459,7 @@
         // Adicionando gráfico criado em div na tela
         const grafico = document.getElementById(`myChartCanvas${idCaminhao}`)
 
-        new Chart(grafico, {
+        var novoGrafico = new Chart(grafico, {
             type: 'line',
             data: dados,
 
@@ -369,9 +473,9 @@
             }
         });
 
-    
 
-        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+
+        setTimeout(() => atualizarGrafico(idCaminhao, dados, novoGrafico), 2000);
     }
 
 
@@ -380,66 +484,68 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    // function atualizarGrafico(idAquario, dados, myChart) {
+    async function atualizarGrafico(idCaminhao, dados, novoGrafico) {
 
 
-        
+        fetch(`/sensorDados/tempo-real/${idCaminhao}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
 
-    //     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (novoRegistro) {
+                    obterdados(idCaminhao);
+                    alertar(novoRegistro, idCaminhao);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
 
-    //                 obterdados(idAquario);
-    //                 // alertar(novoRegistro, idAquario);
-    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-    //                 console.log(`Dados atuais do gráfico:`);
-    //                 console.log(dados);
-
-    //                 let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-    //                 avisoCaptura.innerHTML = ""
+                    // let avisoCaptura = document.getElementById(`avisoCaptura${idCaminhao}`)
+                    // avisoCaptura.innerHTML = ""
 
 
-    //                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-    //                     console.log("---------------------------------------------------------------")
-    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-    //                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-    //                     console.log("Horário do novo dado capturado:")
-    //                     console.log(novoRegistro[0].momento_grafico)
-    //                     console.log("Horário do último dado capturado:")
-    //                     console.log(dados.labels[dados.labels.length - 1])
-    //                     console.log("---------------------------------------------------------------")
-    //                 } else {
-    //                     // tirando e colocando valores no gráfico
-    //                     dados.labels.shift(); // apagar o primeiro
-    //                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                    if (novoRegistro[0].data_hora == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        console.log("<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.")
+                        // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].data_hora)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].data_hora); // incluir um novo momento
 
-    //                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-    //                     dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].umidade_DHT11); // incluir uma nova medida de umidade
 
-    //                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-    //                     dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-    //                     myChart.update();
-    //                 }
-
-    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-
-    // }
+                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                        dados.datasets[1].data.push(novoRegistro[0].temperatura_LM35); // incluir uma nova medida de temperatura
 
 
+                    }
 
+                    novoGrafico.update();
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idCaminhao, dados, novoGrafico), 5000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idCaminhao, dados, grafico), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
 
 
 
+
+
+    window.onload = mostrarTudo();
+    window.onload = btnFuncionario();
 </script>
