@@ -26,12 +26,12 @@ var sql = require('mssql');
 // };
 
 // CONEXÃO DO MYSQL WORKBENCH - ISAAC
-// var mySqlConfig = {
-//    host: "localhost",
-//    database: "FruitTech",
-//    user: "root",
-//    password: "159357",
-//};
+var mySqlConfig = {
+   host: "localhost",
+   database: "FruitTech",
+   user: "root",
+   password: "159357",
+};
 
 // CONEXÃO DO MYSQL WORKBENCH - VOLPE
 // var mySqlConfig = {
@@ -50,12 +50,12 @@ var sql = require('mssql');
 // };
 
 // CONEXÃO DO MYSQL WORKBENCH - Guilherme
- var mySqlConfig = {
-     host: "localhost",
-     database: "fruittech",
-     user: "aluno",
-     password: "sptech",
- };
+//  var mySqlConfig = {
+//      host: "localhost",
+//      database: "fruittech",
+//      user: "aluno",
+//      password: "sptech",
+//  };
 
 
 function executar(instrucao) {

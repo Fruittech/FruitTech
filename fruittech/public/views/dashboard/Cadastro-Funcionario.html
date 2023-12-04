@@ -206,27 +206,31 @@
         idTransp = sessionStorage.getItem('ID_TRANSPORTADORA');
 
 
-        fetch(`/funcionario/selecionarFuncionarios/`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-
-                idServer: idTransp
-            })
+        fetch(`/funcionario/selecionarFuncionarios/${idTransp}`, {
+            method: "GET",
         }).then(function (resposta) {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
 
-                    //   criarTabelasFuncionario();
+                resposta.json().then((all) => {
 
+                    all.forEach((a) => {
+
+                        console.log(a.nomeFuncionario)
+
+                        tabelaFuncionarios.innerHTML +=
+                         `<tr>
+                                                 <td>${a.nomeFuncionario}</td>
+                                                 <td>${a.sobrenomeFuncionario}</td>
+                                                 <td>${a.cpf}</td>
+                                                 <td>${a.senhaUsuario}</td>
+                                            </tr>`
+                    });
                 });
+
+
 
 
             } else {
@@ -244,25 +248,20 @@
 
     // O fetch acima consegue fazer o select mas não gera json por 0 motivos
 
-    function criarTabelasFuncionario() {
+    // function criarTabelasFuncionario() {
 
-        // tem q fazer a requisição dos dados do json q n ta sendo criado
+    //     // tem q fazer a requisição dos dados do json q n ta sendo criado
 
-        tabelaFuncionarios.innerHTML = ``
+    //     tabelaFuncionarios.innerHTML = ``
 
-        for (c = 0; c < 4 /*tamanho da lista que contem os dados do select*/; c++) {
-
-            tabelaFuncionarios.innerHTML += `<tr>
-                                                 <td>Nome</td>
-                                                 <td>Sobrenome</td>
-                                                 <td>Cpf</td>
-                                                 <td>Senha</td>
-                                            </tr>`
-
-        }
+    //     for (c = 0; c < 4 /*tamanho da lista que contem os dados do select*/; c++) {
 
 
-    }
+
+    //     }
+
+
+    // }
 
 
 </script>

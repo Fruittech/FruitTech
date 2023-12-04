@@ -30,7 +30,7 @@ function selecionarFuncionarios(id) {
 
 function selecionarCaminhoes(id) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", id)
-    var instrucao = `SELECT marcaCaminhao, modeloCaminhao, placaCaminhao , comprimentoCaminhao, alturaCaminhao, Caminhao_fkSensores FROM Caminhao WHERE Caminhao_fkTransportadora = ${id};`;
+    var instrucao = `SELECT marcaCaminhao, modeloCaminhao, placaCaminhao , comprimentoCaminhao, alturaCaminhao, codigoSensores FROM Caminhao JOIN Sensores ON caminhao_fkSensores = idSensores WHERE Caminhao_fkTransportadora = ${id};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

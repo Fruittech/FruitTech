@@ -225,13 +225,29 @@
 
             if (resposta.ok) {
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
 
-                    //   criarTabelasFuncionario();
+                    //  criarTabelasCaminhao();
 
-                });
+                    resposta.json()
+                    
+                    .then((all) => {
+
+                        all.forEach((a) => {
+
+                            tabelaFuncionarios.innerHTML +=
+                                `<tr>
+                             <td>${a.marcaCaminhao}</td>
+                             <td>${a.modeloCaminhao}</td>
+                             <td>${a.placaCaminhao}</td>
+                             <td>${a.comprimentoCaminhao}</td>
+                             <td>${a.alturaCaminhao}</td>
+                             <td>${a.codigoSensores}</td>
+                        </tr>`
+                        });
+                    });
+
+
+       
 
 
             } else {
@@ -249,27 +265,27 @@
 
     // O fetch acima consegue fazer o select mas não gera json por 0 motivos
 
-    function criarTabelasCaminhao() {
+    // function criarTabelasCaminhao() {
 
-        // tem q fazer a requisição dos dados do json q n ta sendo criado
+    //     // tem q fazer a requisição dos dados do json q n ta sendo criado
 
-        tabelaCaminhao.innerHTML = ``
+    //     tabelaCaminhao.innerHTML = ``
 
-        for (c = 0; c < 3 /*tamanho da lista que contem os dados do select*/; c++) {
+    //     for (c = 0; c < 3 /*tamanho da lista que contem os dados do select*/; c++) {
 
-            tabelaCaminhao.innerHTML += `<tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>`
+    //         tabelaCaminhao.innerHTML += `<tr>
+    //                                         <td></td>
+    //                                         <td></td>
+    //                                         <td></td>
+    //                                         <td></td>
+    //                                         <td></td>
+    //                                         <td></td>
+    //                                     </tr>`
 
-        }
+    //     }
 
 
-    }
+    // }
 
 
 </script>

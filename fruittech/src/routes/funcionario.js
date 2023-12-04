@@ -12,7 +12,7 @@ router.post("/autenticar", function (req, res) {
     funcionarioController.autenticar(req, res);
 });
 
-router.post("/selecionarFuncionarios", function (req, res) {
+router.get("/selecionarFuncionarios/:idTransp", function (req, res) {
     funcionarioController.selecionarFuncionarios(req, res);
 });
 

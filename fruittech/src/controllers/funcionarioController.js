@@ -90,7 +90,7 @@ function cadastrarFuncionario(req, res) {
 }
 
 function selecionarFuncionarios(req, res) {
-  var id = req.body.idServer;
+  var id = req.params.idTransp;
 
   if (id == undefined) {
     res.status(400).send("Seu CPF está undefined!");
@@ -100,6 +100,7 @@ function selecionarFuncionarios(req, res) {
       .then(function (resultado) {
         console.log(`\nResultados encontrados: ${resultado.length}`);
         console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+        res.status(200).send(resultado)
 
 
 
@@ -126,6 +127,7 @@ function selecionarCaminhoes(req, res) {
       .then(function (resultado) {
         console.log(`\nResultados encontrados: ${resultado.length}`);
         console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+        res.status(202).send(resultado)
 
 
 
