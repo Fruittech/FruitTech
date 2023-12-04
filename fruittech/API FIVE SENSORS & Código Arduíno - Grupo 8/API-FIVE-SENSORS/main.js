@@ -8,7 +8,7 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 const serial = async (
     valoresDht11Umidade,
-    valoresDht11Temperatura,
+   // valoresDht11Temperatura,
     // valoresLuminosidade,
     valoresLm35Temperatura
     //valoresChave
@@ -60,13 +60,8 @@ const serial = async (
 
         if (HABILITAR_OPERACAO_INSERIR) {
             await poolBancoDados.execute(
-                'INSERT INTO SensoresDados (temperatura_LM35, umidade_DHT11, sensoresDados_fkSensores) VALUES (?, ?, ?, 1)',
+                'INSERT INTO SensoresDados (temperatura_LM35, umidade_DHT11, sensoresDados_fkSensores) VALUES (?, ?, 1)',
                 [lm35Temperatura,dht11Umidade ]
-            );
-
-            await poolBancoDados.execute(
-                'INSERT INTO SensoresDados (temperatura_LM35, umidade_DHT11, sensoresDados_fkSensores) VALUES (?, ?, ?, 2)',
-                [lm35Temperatura + 15,dht11Umidade - 40 ]
             );
         }
 

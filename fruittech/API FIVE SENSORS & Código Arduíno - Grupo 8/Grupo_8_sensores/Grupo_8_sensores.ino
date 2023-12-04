@@ -4,7 +4,7 @@
 
 #include <Adafruit_Sensor.h>
 
-#define DHTPIN A0 // A1
+#define DHTPIN A1 // A1
 #define LM35PIN A5 // A5
 //#define LUMIPIN A0 // A0
 //#define CHAVPIN 7 // 7
@@ -19,13 +19,15 @@ void setup() {
 }
 
 void loop() {
+
   // DHT 11
   float dht11_umidade = dht.readHumidity();
-  // float dht11_temperatura = dht.readTemperature();
+  //float dht11_temperatura = dht.readTemperature();
   Serial.print(dht11_umidade);
   Serial.print(",");
-  Serial.print(dht11_temperatura);
-  Serial.print(",");
+  //Serial.print(dht11_temperatura);
+  //Serial.print(",");
+
 /*
   // LUMINOSIDADE
   float luminosidade = analogRead(LUMIPIN);
