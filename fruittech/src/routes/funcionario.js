@@ -12,4 +12,12 @@ router.post("/autenticar", function (req, res) {
     funcionarioController.autenticar(req, res);
 });
 
+router.post("/selecionarFuncionarios", function (req, res) {
+    funcionarioController.selecionarFuncionarios(req, res);
+});
+
+router.post("/selecionarCaminhoes", function (req, res) {
+    funcionarioController.selecionarCaminhoes(req, res);
+});
+
 module.exports = router;

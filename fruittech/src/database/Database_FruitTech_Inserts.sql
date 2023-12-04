@@ -1,6 +1,7 @@
 --  drop database FruitTechV1;
 use FruitTech;
 
+
 -- DESCRIÇÃO
 describe Transportadora;
 describe Telefone;

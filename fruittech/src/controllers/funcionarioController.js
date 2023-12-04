@@ -89,8 +89,60 @@ function cadastrarFuncionario(req, res) {
   }
 }
 
+function selecionarFuncionarios(req, res) {
+  var id = req.body.idServer;
 
+  if (id == undefined) {
+    res.status(400).send("Seu CPF está undefined!");
+  } else {
+
+    funcionarioModel.selecionarFuncionarios(id)
+      .then(function (resultado) {
+        console.log(`\nResultados encontrados: ${resultado.length}`);
+        console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+
+
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao selecionar Funcionarios: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+function selecionarCaminhoes(req, res) {
+  var id = req.body.idServer;
+
+  if (id == undefined) {
+    res.status(400).send("Seu CPF está undefined!");
+  } else {
+
+    funcionarioModel.selecionarCaminhoes(id)
+      .then(function (resultado) {
+        console.log(`\nResultados encontrados: ${resultado.length}`);
+        console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+
+
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao selecionar Funcionarios: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
 module.exports = {
   autenticar,
   cadastrarFuncionario,
+  selecionarFuncionarios,
+  selecionarCaminhoes
 };

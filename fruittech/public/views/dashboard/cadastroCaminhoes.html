@@ -77,6 +77,32 @@
             </div>
 
             <br><br><br>
+
+            <table border="1">
+                <caption>Caminhões</caption>
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Comprimento</th>
+                        <th>Altura</th>
+                        <th>Código Sensor</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaFuncionarios">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br><br><br>
         </div>
     </div>
 </body>
@@ -170,4 +196,80 @@
 
 
     }
+
+
+
+
+
+
+
+
+    window.onload = selecionarCaminhoes();
+
+    function selecionarCaminhoes() {
+
+        idTransp = sessionStorage.getItem('ID_TRANSPORTADORA');
+
+
+        fetch(`/funcionario/selecionarCaminhoes/`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+                idServer: idTransp
+            })
+        }).then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    //   criarTabelasFuncionario();
+
+                });
+
+
+            } else {
+                throw "Houve um erro ao tentar realizar o selecionar do funcionário!";
+            }
+        })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                // finalizarAguardar();
+            });
+
+        return false;
+
+    }
+
+    // O fetch acima consegue fazer o select mas não gera json por 0 motivos
+
+    function criarTabelasCaminhao() {
+
+        // tem q fazer a requisição dos dados do json q n ta sendo criado
+
+        tabelaCaminhao.innerHTML = ``
+
+        for (c = 0; c < 3 /*tamanho da lista que contem os dados do select*/; c++) {
+
+            tabelaCaminhao.innerHTML += `<tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>`
+
+        }
+
+
+    }
+
+
 </script>

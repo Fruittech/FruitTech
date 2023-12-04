@@ -21,6 +21,19 @@ function cadastrarFuncionario(nome, sobrenome, cpf, senha, id) {
     return database.executar(instrucao);
 }
 
+function selecionarFuncionarios(id) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", id)
+    var instrucao = `SELECT nomeFuncionario, sobrenomeFuncionario, cpf , senhaUsuario FROM Funcionario WHERE funcionario_fkTransportadora = ${id};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function selecionarCaminhoes(id) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", id)
+    var instrucao = `SELECT marcaCaminhao, modeloCaminhao, placaCaminhao , comprimentoCaminhao, alturaCaminhao, Caminhao_fkSensores FROM Caminhao WHERE Caminhao_fkTransportadora = ${id};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 // // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 // function cadastrar(nome, email, senha, empresaId) {
@@ -38,4 +51,6 @@ function cadastrarFuncionario(nome, sobrenome, cpf, senha, id) {
 module.exports = {
     autenticar,
     cadastrarFuncionario,
+    selecionarFuncionarios,
+    selecionarCaminhoes
 };
