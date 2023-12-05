@@ -167,10 +167,9 @@
                     console.log("resposta: ", resposta);
 
                     if (resposta.ok) {
-                        //   cardErro.style.display = "block";
 
-                        //   mensagem_erro.innerHTML =
-                        //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                        listarUltimoCadastroCaminhao()
+
                         alert('Cadastro do caminhão realizado com sucesso! Redirecionando para dashboard.')
 
                         setTimeout(() => {
@@ -181,6 +180,8 @@
                         //   finalizarAguardar();
                     } else if (resposta.status == 404) {
                         alert('Código do sensor inválido')
+                    } else if (resposta.status == 409) {
+                        alert('O Código do sensor já está cadastrado em um caminhão!')
                     } else {
                         throw "Houve um erro ao tentar realizar o cadastro do caminhão!";
                     }
@@ -193,6 +194,49 @@
         }
 
         return false;
+
+
+    }
+
+
+    function listarUltimoCadastroCaminhao() {
+        var idT = sessionStorage.ID_TRANSPORTADORA
+
+        fetch(`/caminhao/listarUltimoCadastro/${idT}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json()
+
+                     .then(function (c) {
+                                var caminhoesTransportadora = {
+                                    idCaminhao: c.idCaminhao,
+                                    marcaCaminhao: c.marcaCaminhao,
+                                    modeloCaminhao: c.modeloCaminhao,
+                                    placaCaminhao: c.placaCaminhao,
+                                    comprimentoCaminhao: c.comprimentoCaminhao,
+                                    alturaCaminhao: c.alturaCaminhao,
+                                    caminhao_fkTransportadora: c.caminhao_fkTransportadora,
+                                    caminhao_fkSensores: c.caminhao_fkSensores
+                                };
+
+                                var sessionCaminhoes = JSON.parse(sessionStorage.getItem('CAMINHOES_TRANSPORTADORA')) || [];
+                                sessionCaminhoes.push(caminhoesTransportadora);
+                                sessionStorage.setItem('CAMINHOES_TRANSPORTADORA', JSON.stringify(sessionCaminhoes));
+                            })
+                            .catch(function (erro) {
+                                console.error("Erro ao processar a resposta JSON:", erro);
+                                // Lógica de tratamento de erro, se necessário
+                            });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+
+
+
+
 
 
     }
@@ -226,10 +270,10 @@
             if (resposta.ok) {
 
 
-                    //  criarTabelasCaminhao();
+                //  criarTabelasCaminhao();
 
-                    resposta.json()
-                    
+                resposta.json()
+
                     .then((all) => {
 
                         all.forEach((a) => {
@@ -247,7 +291,7 @@
                     });
 
 
-       
+
 
 
             } else {
@@ -260,6 +304,40 @@
             });
 
         return false;
+
+    }
+
+
+    function ListarInformacoesForum() {
+
+        // const urlParametro = new URLSearchParams(window.location.search);
+        // const idUrl = urlParametro.get('idForum');
+
+        fetch(`/forum/listar/${idUrl}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json()
+
+                    .then((Forum) => {
+
+                        p_titulo_forum.innerHTML = `${Forum.nome}`
+                        p_desc_forum.innerHTML = `${Forum.descricao}`
+                        article_img.style = `background-image: url('${Forum.imagem}');`
+                        article_bg_img.style = `background-image: url('${Forum.imagem}');`
+                        div_titulo_novo_topico.innerHTML = `Novo Tópico - ${Forum.nome}`
+
+                    });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+
+
+
+
+
 
     }
 
